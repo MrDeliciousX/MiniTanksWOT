@@ -11,5 +11,6 @@ public class SimulationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simulation);
         this.setTitle("Symulacja 1vs1");
+
     }
 }
