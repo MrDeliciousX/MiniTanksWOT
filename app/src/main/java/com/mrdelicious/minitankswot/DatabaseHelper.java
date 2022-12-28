@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static String DB_PATH = "/data/data/com.mrdelicious.minitankswot/databases/";
 
+    private static final String TAG = "DatabaseHelper";
     private SQLiteDatabase db;
     private final Context context;
 
@@ -49,9 +50,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } catch (SQLiteException e) {
             Log.e("checkDataBase", e.getMessage());
         }
-        if (tempDB != null)
+        boolean dbExists = tempDB != null;
+        if (dbExists)
             tempDB.close();
-        return tempDB != null;
+        Log.i("dbHelper", "db exists: " + dbExists);
+        return dbExists;
     }
     public void copyDataBase(String db_name) throws IOException {
         try {
@@ -68,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             myOutput.flush();
             myOutput.close();
             myInput.close();
+            Log.i("dbHelper", "copied db to: " + outputFileName);
         } catch (Exception e) {
             Log.e("copyDatabase", e.getMessage());
         }
@@ -75,9 +79,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public void openDataBase(String db_name) throws SQLException {
         String myPath = DB_PATH + db_name;
+        Log.i("dbHelper", "opening db at: " + myPath);
         db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
     public void createDataBase(String db_name) throws IOException {
+        Log.d(TAG, "createDataBase() called with: db_name = [" + db_name + "]");
         boolean dbExist = checkDataBase(db_name);
 
         if (!dbExist) {
@@ -85,7 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             try {
                 copyDataBase(db_name);
             } catch (IOException e) {
-                Log.e("tle99 - create", e.getMessage());
+                Log.e("createDataBase", e.getMessage());
             }
         }
     }
