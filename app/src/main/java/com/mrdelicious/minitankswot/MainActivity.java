@@ -2,8 +2,11 @@ package com.mrdelicious.minitankswot;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,TanksActivity.class);
         startActivity(intent);
     }
-    public void showRules(View view) {
-        Intent intent = new Intent(this,RulesActivity.class);
+    public void showGame(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
     public void openSimulation(View view) {

@@ -3,7 +3,7 @@
     <string name="button_menu_rosters">Dywizje Pancerne</string>
     <string name="button_menu_simulate">Symulacja 1vs1</string>
     <string name="button_menu_tanks">Lista Czołgów</string>
-    <string name="button_menu_rules">Zasady</string>
+    <string name="button_menu_game">Rozgrywka</string>
     <string name="text_menu_version">Version 1.0.0</string>
     <string name="versus">VS</string>
     <string name="tank">czołg</string>
@@ -16,5 +16,8 @@
     <string name="right">prawy</string>
     <string name="close">bliski zasięg</string>
     <string name="movement">ruch</string>
+    <string name="critical">kryt</string>
+    <string name="button_random_crit">Losuj trafienie krytyczne</string>
+    <string name="crit_list">Lista trafień krytycznych</string>
 
 </resources>
