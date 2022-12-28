@@ -2,7 +2,10 @@ package com.mrdelicious.minitankswot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -32,7 +35,11 @@ public class CriticalActivity extends AppCompatActivity {
         ShowCritsOnListView(dbHelper);
     }
     public void ShowCritsOnListView(DatabaseHelper databaseHelper) {
-        critArrayAdapter = new ArrayAdapter<>(CriticalActivity.this, android.R.layout.simple_list_item_1, databaseHelper.getAllFromDatabase(db_name, table));
+        critArrayAdapter = new ArrayAdapter<>(CriticalActivity.this, android.R.layout.simple_list_item_1, databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString));
         lvCrits.setAdapter(critArrayAdapter);
+    }
+    public void ShowRandomCrit(View view) {
+        Intent intent = new Intent(this,RandomCritActivity.class);
+        startActivity(intent);
     }
 }

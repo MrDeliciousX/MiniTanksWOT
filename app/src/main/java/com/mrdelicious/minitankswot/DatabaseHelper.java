@@ -1,6 +1,5 @@
 package com.mrdelicious.minitankswot;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -17,6 +16,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -30,18 +31,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, db_name, null, 1);
         this.context = context;
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
     }
+
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
+
     @Override
-    public synchronized void close(){
-        if(db!=null){
+    public synchronized void close() {
+        if (db != null) {
             db.close();
         }
         super.close();
     }
+
     private boolean checkDataBase(String db_name) {
         SQLiteDatabase tempDB = null;
         try {
@@ -56,16 +62,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.i("dbHelper", "db exists: " + dbExists);
         return dbExists;
     }
+
     public void copyDataBase(String db_name) throws IOException {
         try {
-            InputStream myInput = context.getAssets().open("databases/"+db_name);
+            InputStream myInput = context.getAssets().open("databases/" + db_name);
             String outputFileName = DB_PATH + db_name;
             OutputStream myOutput = new FileOutputStream(outputFileName);
 
             byte[] buffer = new byte[1024];
             int length;
 
-            while((length = myInput.read(buffer))>0){
+            while ((length = myInput.read(buffer)) > 0) {
                 myOutput.write(buffer, 0, length);
             }
             myOutput.flush();
@@ -77,11 +84,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
     public void openDataBase(String db_name) throws SQLException {
         String myPath = DB_PATH + db_name;
         Log.i("dbHelper", "opening db at: " + myPath);
         db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
+
     public void createDataBase(String db_name) throws IOException {
         Log.d(TAG, "createDataBase() called with: db_name = [" + db_name + "]");
         boolean dbExist = checkDataBase(db_name);
@@ -95,28 +104,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
     }
-    public List<String> getAllFromDatabase(String db_name, String table){
-        List<String> listCrits = new ArrayList<>();
+
+    public <T> List<T> getColumnFromDatabase(String db_name, String table, int column, BiFunction<Cursor, Integer, T> extractor) {
+        List<T> list = new ArrayList<>();
         openDataBase(db_name);
         Cursor c;
 
         try {
-            c = db.rawQuery("SELECT * FROM " + table , null);
-            if(c == null) return null;
+            c = db.rawQuery("SELECT * FROM " + table, null);
+            if (c == null) return null;
 
-            String name;
             c.moveToFirst();
+            T item;
             do {
-                name = c.getString(1);
-                listCrits.add(name);
+                item = extractor.apply(c, column);
+                list.add(item);
             } while (c.moveToNext());
             c.close();
         } catch (Exception e) {
-            Log.e("getAllCrits", e.getMessage());
+            Log.e("getColumnFromDatabase " + db_name, e.getMessage());
         }
 
         db.close();
 
-        return listCrits;
+        return list;
     }
 }

@@ -1,7 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MiniTanksWOT</string>
     <string name="button_menu_rosters">Dywizje Pancerne</string>
-    <string name="button_menu_simulate">Symulacja 1vs1</string>
+    <string name="button_menu_simulate" tools:ignore="Typos">Symulacja 1vs1</string>
     <string name="button_menu_tanks">Lista Czołgów</string>
     <string name="button_menu_game">Rozgrywka</string>
     <string name="text_menu_version">Version 1.0.0</string>
@@ -19,5 +19,10 @@
     <string name="critical">kryt</string>
     <string name="button_random_crit">Losuj trafienie krytyczne</string>
     <string name="crit_list">Lista trafień krytycznych</string>
+    <string name="Crit_name">Nazwa trafienia krytycznego</string>
+    <string name="crit_content">Treść karty</string>
+    <string name="if_repairable">czy naprawialne</string>
+    <string name="damage">Uszkodzenia: </string>
+    <string name="zero">0</string>
 
 </resources>
