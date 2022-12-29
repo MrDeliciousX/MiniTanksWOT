@@ -27,5 +27,14 @@
     <string name="chance">Szansa wylosowania: </string>
     <string name="search">Szukaj</string>
     <string name="tank_name">Nazwa czołgu</string>
+    <string name="stat_firepower">S</string>
+    <string name="stat_def">O</string>
+    <string name="stat_move">M</string>
+    <string name="stat_initiative">I</string>
+    <string name="stat_hp">HP</string>
+    <string name="stat_type">Typ pojazdu</string>
+    <string name="stat_tier">Tier</string>
+    <string name="stat_nation">Kraj</string>
+    <string name="stat_cost">Koszt</string>
 
 </resources>

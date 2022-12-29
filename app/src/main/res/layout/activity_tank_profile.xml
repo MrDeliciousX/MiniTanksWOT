@@ -30,4 +30,149 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tankProfile_tankName"
         app:srcCompat="@drawable/tank_profile_image" />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tankProfile_image">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tankProfile_firepower"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_firepower"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_def"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_def"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_move"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_move"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_initiative"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_initiative"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_HP"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_hp"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_type"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_type"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_tier"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_tier"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_nation"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_nation"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_cost"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_cost"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tankProfile_firepowerV"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_defV"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_moveV"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_initiativeV"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_HPV"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_typeV"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_tierV"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_nationV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tankProfile_costV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textAlignment="center" />
+        </TableRow>
+
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

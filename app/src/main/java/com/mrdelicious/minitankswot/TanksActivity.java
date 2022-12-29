@@ -2,6 +2,7 @@ package com.mrdelicious.minitankswot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -32,6 +33,11 @@ public class TanksActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         ShowTanksOnListView(dbHelper);
+
+        lvTanks.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(TanksActivity.this, TankProfileActivity.class);
+            startActivity(intent);
+        });
     }
     public void ShowTanksOnListView(DatabaseHelper databaseHelper) {
         tankArrayAdapter = new ArrayAdapter<>(
