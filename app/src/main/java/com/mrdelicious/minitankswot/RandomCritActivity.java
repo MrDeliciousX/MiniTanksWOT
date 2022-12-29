@@ -1,7 +1,6 @@
 package com.mrdelicious.minitankswot;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -23,9 +22,18 @@ public class RandomCritActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_crit);
         this.setTitle("Trafienie krytyczne");
+        String name;
+
+        Bundle clicked = getIntent().getExtras();
+        if (clicked != null){
+            int index = clicked.getInt("index");
+            name = findCritNameByID(index);
+        } else {
+            name = randomCritCard();
+        }
 
         TextView nameCrit = findViewById(R.id.randomCrit_name);
-        String name = randomCritCard();
+
         nameCrit.setText(name);
 
         TextView textCrit = findViewById(R.id.randomCrit_text);
@@ -107,5 +115,11 @@ public class RandomCritActivity extends AppCompatActivity {
             }
         }
         return content;
+    }
+    public String findCritNameByID(int id){
+        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
+        List<String> names;
+        names = dbHelper.getColumnFromDatabase(db_name,table,1,Cursor::getString);
+        return names.get(id);
     }
 }
