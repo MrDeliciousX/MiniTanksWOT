@@ -24,5 +24,6 @@
     <string name="if_repairable">czy naprawialne</string>
     <string name="damage">Uszkodzenia: </string>
     <string name="zero">0</string>
+    <string name="chance">Szansa wylosowania: </string>
 
 </resources>

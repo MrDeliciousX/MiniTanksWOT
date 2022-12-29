@@ -23,6 +23,7 @@ public class RandomCritActivity extends AppCompatActivity {
         setContentView(R.layout.activity_random_crit);
         this.setTitle("Trafienie krytyczne");
         String name;
+        int chanceHelp;
 
         Bundle clicked = getIntent().getExtras();
         if (clicked != null){
@@ -49,6 +50,10 @@ public class RandomCritActivity extends AppCompatActivity {
         TextView dmg = findViewById(R.id.randomCrit_damageNr);
         dmg.setText(findCritContent(name)[2]);
 
+        TextView chance = findViewById(R.id.randomCrit_chance);
+        chanceHelp = 100*(Integer.parseInt(findCritContent(name)[5]))/32;
+        chance.setText(chanceHelp + "%");
+
         Button repeatButton = findViewById(R.id.randomCrit_buttonNew);
         repeatButton.setOnClickListener(view ->{
             String newName = randomCritCard();
@@ -60,6 +65,8 @@ public class RandomCritActivity extends AppCompatActivity {
                 rep.setText("           ");
             }
             dmg.setText(findCritContent(newName)[2]);
+            int chanceHelpNew = 100*(Integer.parseInt(findCritContent(newName)[5]))/32;
+            chance.setText(chanceHelpNew + "%");
         });
     }
     public String randomCritCard(){
