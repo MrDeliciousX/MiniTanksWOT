@@ -25,5 +25,6 @@
     <string name="damage">Uszkodzenia: </string>
     <string name="zero">0</string>
     <string name="chance">Szansa wylosowania: </string>
+    <string name="search">Szukaj</string>
 
 </resources>

@@ -41,7 +41,11 @@ public class CriticalActivity extends AppCompatActivity {
         });
     }
     public void ShowCritsOnListView(DatabaseHelper databaseHelper) {
-        critArrayAdapter = new ArrayAdapter<>(CriticalActivity.this, android.R.layout.simple_list_item_1, databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString));
+        critArrayAdapter = new ArrayAdapter<>(
+                CriticalActivity.this,
+                android.R.layout.simple_list_item_1,
+                databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString)
+        );
         lvCrits.setAdapter(critArrayAdapter);
     }
     public void ShowRandomCrit(View view) {
