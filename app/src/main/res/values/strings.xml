@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MiniTanksWOT</string>
+    <string name="app_name">MiniWoT</string>
     <string name="button_menu_rosters">Dywizje Pancerne</string>
     <string name="button_menu_simulate" tools:ignore="Typos">Symulacja 1vs1</string>
     <string name="button_menu_tanks">Lista Czołgów</string>
@@ -26,5 +26,6 @@
     <string name="zero">0</string>
     <string name="chance">Szansa wylosowania: </string>
     <string name="search">Szukaj</string>
+    <string name="tank_name">Nazwa czołgu</string>
 
 </resources>
