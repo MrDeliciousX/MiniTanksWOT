@@ -7,7 +7,7 @@
     tools:context=".RandomCritActivity">
 
     <TextView
-        android:id="@+id/crit_name"
+        android:id="@+id/randomCrit_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/crit_text"
+        android:id="@+id/randomCrit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -31,11 +31,11 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crit_name"
+        app:layout_constraintTop_toBottomOf="@+id/randomCrit_name"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button2_random"
+        android:id="@+id/randomCrit_buttonNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
@@ -45,14 +45,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/text_repairable"
+        android:id="@+id/randomCrit_isRepairable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:text="@string/if_repairable"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2_random"
+        app:layout_constraintBottom_toTopOf="@+id/randomCrit_buttonNew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,12 +61,12 @@
         android:layout_width="206dp"
         android:layout_height="44dp"
         android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_repairable"
+        app:layout_constraintBottom_toTopOf="@+id/randomCrit_isRepairable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/damage"
+            android:id="@+id/randomCrit_damage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/damage"
@@ -79,14 +79,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/damage_nr"
+            android:id="@+id/randomCrit_damageNr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
             android:textColor="@color/black"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/damage"
+            app:layout_constraintStart_toEndOf="@+id/randomCrit_damage"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

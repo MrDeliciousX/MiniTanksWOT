@@ -24,24 +24,24 @@ public class RandomCritActivity extends AppCompatActivity {
         setContentView(R.layout.activity_random_crit);
         this.setTitle("Trafienie krytyczne");
 
-        TextView nameCrit = findViewById(R.id.crit_name);
+        TextView nameCrit = findViewById(R.id.randomCrit_name);
         String name = randomCritCard();
         nameCrit.setText(name);
 
-        TextView textCrit = findViewById(R.id.crit_text);
+        TextView textCrit = findViewById(R.id.randomCrit_text);
         textCrit.setText(findCritContent(name)[4]);
 
-        TextView rep = findViewById(R.id.text_repairable);
+        TextView rep = findViewById(R.id.randomCrit_isRepairable);
         if (findCritContent(name)[3].equals("1")){
             rep.setText("Naprawialne");
         } else {
             rep.setText("           ");
         }
 
-        TextView dmg = findViewById(R.id.damage_nr);
+        TextView dmg = findViewById(R.id.randomCrit_damageNr);
         dmg.setText(findCritContent(name)[2]);
 
-        Button repeatButton = findViewById(R.id.button2_random);
+        Button repeatButton = findViewById(R.id.randomCrit_buttonNew);
         repeatButton.setOnClickListener(view ->{
             String newName = randomCritCard();
             nameCrit.setText(newName);

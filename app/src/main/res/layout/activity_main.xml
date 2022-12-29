@@ -7,51 +7,51 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button_menu_4"
+        android:id="@+id/main_buttonSim"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:onClick="openSimulation"
         android:text="@string/button_menu_simulate"
-        app:layout_constraintBottom_toTopOf="@+id/version"
+        app:layout_constraintBottom_toTopOf="@+id/main_version"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_menu_3"
+        android:id="@+id/main_buttonGame"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:onClick="showGame"
         android:text="@string/button_menu_game"
-        app:layout_constraintBottom_toTopOf="@+id/button_menu_4"
+        app:layout_constraintBottom_toTopOf="@+id/main_buttonSim"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_menu_2"
+        android:id="@+id/main_buttonTanks"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:onClick="showTankList"
         android:text="@string/button_menu_tanks"
-        app:layout_constraintBottom_toTopOf="@+id/button_menu_3"
+        app:layout_constraintBottom_toTopOf="@+id/main_buttonGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_menu_1"
+        android:id="@+id/main_buttonRosters"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:onClick="showRosters"
         android:text="@string/button_menu_rosters"
-        app:layout_constraintBottom_toTopOf="@+id/button_menu_2"
+        app:layout_constraintBottom_toTopOf="@+id/main_buttonTanks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/version"
+        android:id="@+id/main_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

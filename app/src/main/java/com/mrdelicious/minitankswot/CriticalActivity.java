@@ -23,7 +23,7 @@ public class CriticalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_critical);
-        lvCrits = findViewById(R.id.lvCrits);
+        lvCrits = findViewById(R.id.critical_listCrits);
         this.setTitle("Uszkodzenia krytyczne");
 
         dbHelper = new DatabaseHelper(getApplicationContext(),db_name);

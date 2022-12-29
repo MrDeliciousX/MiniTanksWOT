@@ -7,7 +7,7 @@
     tools:context=".CriticalActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/critical_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/lvCrits"
+        android:id="@+id/critical_listCrits"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
@@ -27,10 +27,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_title" />
+        app:layout_constraintTop_toBottomOf="@+id/critical_labelTitle" />
 
     <TextView
-        android:id="@+id/label_title"
+        android:id="@+id/critical_labelTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -39,5 +39,5 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/critical_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
