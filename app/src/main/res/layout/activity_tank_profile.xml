@@ -32,6 +32,7 @@
         app:srcCompat="@drawable/tank_profile_image" />
 
     <TableLayout
+        android:id="@+id/tankProfile_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,4 +176,27 @@
         </TableRow>
 
     </TableLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tankProfile_stats">
+
+        <TextView
+            android:id="@+id/tankProfile_addRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stat_special_rules" />
+
+        <ListView
+            android:id="@+id/tankProfile_listRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

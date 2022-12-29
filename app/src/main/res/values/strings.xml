@@ -36,5 +36,6 @@
     <string name="stat_tier">Tier</string>
     <string name="stat_nation">Kraj</string>
     <string name="stat_cost">Koszt</string>
+    <string name="stat_special_rules">Specjalne zasady:</string>
 
 </resources>
