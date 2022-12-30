@@ -35,7 +35,9 @@ public class TanksActivity extends AppCompatActivity {
         ShowTanksOnListView(dbHelper);
 
         lvTanks.setOnItemClickListener((parent, view, position, id) -> {
+            String tank = String.valueOf(parent.getItemAtPosition(position));
             Intent intent = new Intent(TanksActivity.this, TankProfileActivity.class);
+            intent.putExtra("name", tank);
             startActivity(intent);
         });
     }
