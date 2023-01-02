@@ -41,7 +41,7 @@ public class TanksActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-    public void ShowTanksOnListView(DatabaseHelper databaseHelper) {
+    void ShowTanksOnListView(DatabaseHelper databaseHelper) {
         tankArrayAdapter = new ArrayAdapter<>(
                 TanksActivity.this,
                 android.R.layout.simple_list_item_1,

@@ -1,5 +1,6 @@
 package com.mrdelicious.minitankswot;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -7,9 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,10 +16,10 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    @SuppressLint("SdCardPath")
     public static String DB_PATH = "/data/data/com.mrdelicious.minitankswot/databases/";
 
     private static final String TAG = "DatabaseHelper";
@@ -65,6 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void copyDataBase(String db_name) throws IOException {
         try {
+            assert context != null;
             InputStream myInput = context.getAssets().open("databases/" + db_name);
             String outputFileName = DB_PATH + db_name;
             OutputStream myOutput = new FileOutputStream(outputFileName);

@@ -69,7 +69,7 @@ public class RandomCritActivity extends AppCompatActivity {
             chance.setText(chanceHelpNew + "%");
         });
     }
-    public String randomCritCard(){
+    String randomCritCard(){
         Random random = new Random();
         int int_random = random.nextInt(32);
         dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
@@ -88,7 +88,7 @@ public class RandomCritActivity extends AppCompatActivity {
         }
         return karty.get(int_random);
     }
-    public String[] findCritContent(String name){
+    String[] findCritContent(String name){
         dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
         String[] content = new String[6];
 
@@ -123,7 +123,7 @@ public class RandomCritActivity extends AppCompatActivity {
         }
         return content;
     }
-    public String findCritNameByID(int id){
+    String findCritNameByID(int id){
         dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
         List<String> names;
         names = dbHelper.getColumnFromDatabase(db_name,table,1,Cursor::getString);

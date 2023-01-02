@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -40,7 +39,7 @@ public class CriticalActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-    public void ShowCritsOnListView(DatabaseHelper databaseHelper) {
+    void ShowCritsOnListView(DatabaseHelper databaseHelper) {
         critArrayAdapter = new ArrayAdapter<>(
                 CriticalActivity.this,
                 android.R.layout.simple_list_item_1,
