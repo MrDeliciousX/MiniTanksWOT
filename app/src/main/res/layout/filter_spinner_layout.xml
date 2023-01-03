@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivFilterSpinner"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/lack"
+        android:src="@drawable/ic_android_black_24dp" />
+
+    <TextView
+        android:id="@+id/tvFilterSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/lack"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+</LinearLayout>

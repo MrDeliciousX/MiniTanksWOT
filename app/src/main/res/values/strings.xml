@@ -16,7 +16,7 @@
     <string name="right">prawy</string>
     <string name="close">bliski zasięg</string>
     <string name="movement">ruch</string>
-    <string name="critical">kryt</string>
+    <string name="critical">Trafienia krytyczne</string>
     <string name="button_random_crit">Losuj trafienie krytyczne</string>
     <string name="crit_list">Lista trafień krytycznych</string>
     <string name="Crit_name">Nazwa trafienia krytycznego</string>
@@ -38,5 +38,24 @@
     <string name="stat_cost">Koszt</string>
     <string name="stat_special_rules">Specjalne zasady:</string>
     <string name="history_text">Historyczna paplanina</string>
+    <string name="button_abilitiesList">Cechy pojazdów</string>
+    <string name="terrainRules">Zasady terenu i przeszkód</string>
+    <string name="addNew">Dodaj nową</string>
+    <string name="unofficial">Nieoficjalny</string>
+    <string name="lack">Brak</string>
+    <string name="light">Lekki</string>
+    <string name="medium">Średni</string>
+    <string name="heavy">Ciężki</string>
+    <string name="destroyer">Niszczyciel</string>
+    <string name="artillery">Artyleria</string>
+    <string name="type">Typ</string>
+    <string name="nation">Kraj</string>
+    <string name="greatBritain">Wielka Brytania</string>
+    <string name="cccp">ZSRR</string>
+    <string name="usa">USA</string>
+    <string name="thirdReich">III Rzesza</string>
+    <string name="official">Oficialne</string>
+    <string name="unofficials">Nieoficjalne</string>
+    <string name="all">Wszystkie</string>
 
 </resources>

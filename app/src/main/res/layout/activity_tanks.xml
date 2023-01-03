@@ -6,16 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".TanksActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+    <LinearLayout
+        android:id="@+id/tanks_filters"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="1dp"
+        android:layout_height="98dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/tanks_filterNation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="49dp" />
+
+            <Spinner
+                android:id="@+id/tanks_filterType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="49dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/tanks_filterTier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="49dp" />
+
+            <Spinner
+                android:id="@+id/tanks_filterOfficial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="49dp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/tanks_searchButton"
@@ -24,7 +63,8 @@
         android:text="@string/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/tanks_filters"
+        tools:ignore="TextContrastCheck" />
 
     <ListView
         android:id="@+id/tanks_tankList"

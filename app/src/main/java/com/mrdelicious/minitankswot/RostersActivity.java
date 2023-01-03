@@ -10,5 +10,11 @@ public class RostersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rosters);
         this.setTitle("Dywizje Pancerne");
+
+        showRostersList();
+    }
+
+    public void showRostersList(){
+
     }
 }
