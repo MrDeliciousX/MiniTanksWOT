@@ -28,9 +28,6 @@ public class TankProfileActivity extends AppCompatActivity {
 
         String[] stats = getTankStats(name);
 
-        TextView tankName = findViewById(R.id.tankProfile_tankName);
-        tankName.setText(name);
-
         imageFill(name);
         statisticFill(stats);
         showAbilitiesList(stats);
@@ -86,15 +83,16 @@ public class TankProfileActivity extends AppCompatActivity {
                     helper = new StringBuilder();
                 }
             }
+            lista.add(helper.toString());
         }
 
         return lista;
     }
     void statisticFill(String[] stats){
-        String[] helper = {"costV","firepowerV","defV","moveV","initiativeV","HPV","tierV","typeV","nationV","history"};
+        String[] helper = {"tankName","costV","firepowerV","defV","moveV","initiativeV","HPV","tierV","typeV","nationV","history"};
         TextView textView;
-        int j = 2;
-        for (int i = 0; i < 10; i++) {
+        int j = 1;
+        for (int i = 0; i < 11; i++) {
             String id = "tankProfile_" + helper[i];
             int resID = getResources().getIdentifier(id,"id",getPackageName());
             textView = findViewById(resID);
@@ -110,15 +108,13 @@ public class TankProfileActivity extends AppCompatActivity {
         for (int i = 0; i < name.length(); i++) {
             if(name.charAt(i)==' ' || name.charAt(i)=='-' || name.charAt(i)=='(' || name.charAt(i)==')' || name.charAt(i)=='.'){
                 nameHelper.append('_');
-            } else {
-                nameHelper.append(name.charAt(i));
-            }
+            } else nameHelper.append(name.charAt(i));
         }
         nameHelper = new StringBuilder(nameHelper.toString().toLowerCase(Locale.ROOT));
         int imageHelper = getResources().getIdentifier(nameHelper.toString(), "drawable", getPackageName());
         image.setImageResource(imageHelper);
     }
-    void showAbilitiesList(String[] stats){
+    public void showAbilitiesList(String[] stats){
         ListView tankSkills = findViewById(R.id.tankProfile_listRules);
         List<String> tankSkillsHelper;
         tankSkillsHelper = textToList(stats[13]);
