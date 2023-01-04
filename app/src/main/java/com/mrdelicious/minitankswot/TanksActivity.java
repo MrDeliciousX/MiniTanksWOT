@@ -1,7 +1,6 @@
 package com.mrdelicious.minitankswot;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,8 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,11 +92,11 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         spinnerTypes = findViewById(R.id.tanks_filterType);
         ArrayList<CustomSpinner> typesList = new ArrayList<>();
         typesList.add(new CustomSpinner(getString(R.string.type),0));
-        typesList.add(new CustomSpinner(getString(R.string.light),R.drawable.ic_android_black_24dp));
-        typesList.add(new CustomSpinner(getString(R.string.medium),R.drawable.ic_android_black_24dp));
-        typesList.add(new CustomSpinner(getString(R.string.heavy),R.drawable.ic_android_black_24dp));
-        typesList.add(new CustomSpinner(getString(R.string.destroyer),R.drawable.ic_android_black_24dp));
-        typesList.add(new CustomSpinner(getString(R.string.artillery),R.drawable.ic_android_black_24dp));
+        typesList.add(new CustomSpinner(getString(R.string.light),R.drawable.type_light));
+        typesList.add(new CustomSpinner(getString(R.string.medium),R.drawable.type_medium));
+        typesList.add(new CustomSpinner(getString(R.string.heavy),R.drawable.type_heavy));
+        typesList.add(new CustomSpinner(getString(R.string.destroyer),R.drawable.type_destroyer));
+        typesList.add(new CustomSpinner(getString(R.string.artillery),R.drawable.type_spg));
         SpinnerAdapter spinnerAdapterTypes = new SpinnerAdapter(this,typesList);
         if (spinnerTypes != null){
              spinnerTypes.setAdapter(spinnerAdapterTypes);
@@ -109,10 +106,10 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         spinnerNations = findViewById(R.id.tanks_filterNation);
         ArrayList<CustomSpinner> nationsList = new ArrayList<>();
         nationsList.add(new CustomSpinner(getString(R.string.nation),0));
-        nationsList.add(new CustomSpinner(getString(R.string.thirdReich),R.drawable.ic_android_black_24dp));
-        nationsList.add(new CustomSpinner(getString(R.string.usa),R.drawable.ic_android_black_24dp));
-        nationsList.add(new CustomSpinner(getString(R.string.cccp),R.drawable.ic_android_black_24dp));
-        nationsList.add(new CustomSpinner(getString(R.string.greatBritain),R.drawable.ic_android_black_24dp));
+        nationsList.add(new CustomSpinner(getString(R.string.thirdReich),R.drawable.flag_german));
+        nationsList.add(new CustomSpinner(getString(R.string.usa),R.drawable.flag_usa));
+        nationsList.add(new CustomSpinner(getString(R.string.cccp),R.drawable.flag_zsrr));
+        nationsList.add(new CustomSpinner(getString(R.string.greatBritain),R.drawable.flag_gb));
         SpinnerAdapter spinnerAdapterNations = new SpinnerAdapter(this,nationsList);
         if (spinnerNations != null){
             spinnerNations.setAdapter(spinnerAdapterNations);
