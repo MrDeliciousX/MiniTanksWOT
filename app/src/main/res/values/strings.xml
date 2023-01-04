@@ -57,5 +57,6 @@
     <string name="official">Oficjalne</string>
     <string name="unofficials">Nieoficjalne</string>
     <string name="all">Wszystkie</string>
+    <string name="filter">Filtr</string>
 
 </resources>

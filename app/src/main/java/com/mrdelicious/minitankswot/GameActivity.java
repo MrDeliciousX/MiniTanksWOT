@@ -15,7 +15,15 @@ public class GameActivity extends AppCompatActivity {
         this.setTitle("Rozgrywka");
     }
     public void showCritical(View view) {
-        Intent intent = new Intent(this,CriticalActivity.class);
+        Intent intent = new Intent(this, CriticalHitActivity.class);
+        startActivity(intent);
+    }
+    public void showAbilities(View view) {
+        Intent intent = new Intent(this,AbilitiesActivity.class);
+        startActivity(intent);
+    }
+    public void showTerrains(View view) {
+        Intent intent = new Intent(this,TerrainsActivity.class);
         startActivity(intent);
     }
 }

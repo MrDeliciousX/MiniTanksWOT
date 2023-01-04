@@ -13,15 +13,31 @@
         android:theme="@style/Theme.MiniTanksWOT"
         tools:targetApi="31">
         <activity
-            android:name=".RandomCritActivity"
+            android:name=".TerrainsActivity"
             android:exported="false"
-            android:parentActivityName=".CriticalActivity">
+            android:parentActivityName=".GameActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CriticalActivity"
+            android:name=".AbilitiesActivity"
+            android:exported="false"
+            android:parentActivityName=".GameActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RandomCritActivity"
+            android:exported="false"
+            android:parentActivityName=".CriticalHitActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CriticalHitActivity"
             android:exported="false"
             android:parentActivityName=".GameActivity">
             <meta-data
