@@ -98,11 +98,12 @@ public class TankProfileActivity extends AppCompatActivity {
             textView = findViewById(resID);
             textView.setText(stats[j+i]);
             if (j+i==2) j++;
-            if (j+i==8) j+=2;
-            if (j+i==12) j++;
+            else if (j+i==8) j+=2;
+            else if (j+i==12) j++;
         }
         textView = findViewById(R.id.tankProfile_official);
         if (stats[3].equals("0")) textView.setText(R.string.unofficial);
+        else textView.setText("");
     }
     void imageFill(String name){
         ImageView image = findViewById(R.id.tankProfile_image);

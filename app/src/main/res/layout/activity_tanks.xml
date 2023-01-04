@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/nation"
                 android:minHeight="49dp" />
 
             <Spinner
@@ -32,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/type"
                 android:minHeight="49dp" />
         </LinearLayout>
 
@@ -45,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/stat_tier"
                 android:minHeight="49dp" />
 
             <Spinner
@@ -52,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/official"
                 android:minHeight="49dp" />
         </LinearLayout>
     </LinearLayout>
@@ -60,6 +64,7 @@
         android:id="@+id/tanks_searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="searchTanks"
         android:text="@string/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -10,9 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class TanksActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -20,12 +22,12 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
     DatabaseHelper dbHelper;
     ListView lvTanks;
     ArrayAdapter<String> tankArrayAdapter;
-    Spinner spinnerTypes;
-    Spinner spinnerNations;
-    Spinner spinnerTiers;
-    Spinner spinnerOfficials;
     String db_name = "db_tanks.db";
     String table = "TANKS_TABLE";
+    String nation = "";
+    String type = "";
+    int tier = 0;
+    int official = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         } catch (IOException e) {
             e.printStackTrace();
         }
-        showTanksOnListView(dbHelper);
+        showTanksOnListView(dbHelper,"",0,"",2);
 
         lvTanks.setOnItemClickListener((parent, view, position, id) -> {
             String tank = String.valueOf(parent.getItemAtPosition(position));
@@ -51,15 +53,45 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
             startActivity(intent);
         });
     }
-    void showTanksOnListView(DatabaseHelper databaseHelper) {
+    void showTanksOnListView(DatabaseHelper databaseHelper,String nation,int tier,String type,int official) {
+        List<String> tanks = databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString);
+        List<String> nations = databaseHelper.getColumnFromDatabase(db_name,table,14,Cursor::getString);
+        List<Integer> tiers = databaseHelper.getColumnFromDatabase(db_name,table,11,Cursor::getInt);
+        List<Integer> officials = databaseHelper.getColumnFromDatabase(db_name,table,3,Cursor::getInt);
+        List<String> types = databaseHelper.getColumnFromDatabase(db_name,table,12,Cursor::getString);
+        List<String> findTanks = new ArrayList<>();
+
+        for (int i = 0; i < tanks.size(); i++) {
+            boolean good = true;
+            if (!nation.equals(""))
+                if (!nation.equals(nations.get(i)))
+                    good = false;
+            if (tier != 0)
+                if (tier != tiers.get(i))
+                    good = false;
+            if (!type.equals(""))
+                if (!type.equals(types.get(i)))
+                    good = false;
+            if (official != 2)
+                if (official != officials.get(i))
+                    good = false;
+            if (good)
+                findTanks.add(tanks.get(i));
+        }
+
         tankArrayAdapter = new ArrayAdapter<>(
                 TanksActivity.this,
                 android.R.layout.simple_list_item_1,
-                databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString).stream().sorted().collect(Collectors.toList())
+                findTanks.stream().sorted().collect(Collectors.toList())
         );
         lvTanks.setAdapter(tankArrayAdapter);
     }
     void fillFilters(){
+        Spinner spinnerTypes;
+        Spinner spinnerNations;
+        Spinner spinnerTiers;
+        Spinner spinnerOfficials;
+
         spinnerTypes = findViewById(R.id.tanks_filterType);
         ArrayList<CustomSpinner> typesList = new ArrayList<>();
         typesList.add(new CustomSpinner(getString(R.string.type),0));
@@ -117,12 +149,92 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
             spinnerOfficials.setOnItemSelectedListener(this);
         }
     }
+    public void searchTanks(View view){
+        showTanksOnListView(dbHelper,nation,tier,type,official);
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         CustomSpinner items = (CustomSpinner)parent.getSelectedItem();
+        String chosenFilter=items.getSpinnerText();
+        switch (chosenFilter) {
+            case "Typ":
+                type = "";
+                break;
+            case "Lekki":
+                type = "light";
+                break;
+            case "Średni":
+                type = "medium";
+                break;
+            case "Ciężki":
+                type = "heavy";
+                break;
+            case "Niszczyciel":
+                type = "destroyer";
+                break;
+            case "Artyleria":
+                type = "spg";
+                break;
+            case "Kraj":
+                nation = "";
+                break;
+            case "III Rzesza":
+                nation = "german";
+                break;
+            case "USA":
+                nation = "usa";
+                break;
+            case "ZSRR":
+                nation = "zsrr";
+                break;
+            case "Wielka Brytania":
+                nation = "gb";
+                break;
+            case "Tier":
+                tier = 0;
+                break;
+            case "I":
+                tier = 1;
+                break;
+            case "II":
+                tier = 2;
+                break;
+            case "III":
+                tier = 3;
+                break;
+            case "IV":
+                tier = 4;
+                break;
+            case "V":
+                tier = 5;
+                break;
+            case "VI":
+                tier = 6;
+                break;
+            case "VII":
+                tier = 7;
+                break;
+            case "VIII":
+                tier = 8;
+                break;
+            case "IX":
+                tier = 9;
+                break;
+            case "X":
+                tier = 10;
+                break;
+            case "Wszystkie":
+                official = 2;
+                break;
+            case "Oficjalne":
+                official = 1;
+                break;
+            case "Nieoficjalne":
+                official = 0;
+                break;
+        }
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 

@@ -19,7 +19,7 @@
     <string name="critical">Trafienia krytyczne</string>
     <string name="button_random_crit">Losuj trafienie krytyczne</string>
     <string name="crit_list">Lista trafień krytycznych</string>
-    <string name="Crit_name">Nazwa trafienia krytycznego</string>
+    <string name="crit_name">Nazwa trafienia krytycznego</string>
     <string name="crit_content">Treść karty</string>
     <string name="if_repairable">czy naprawialne</string>
     <string name="damage">Uszkodzenia: </string>
@@ -54,7 +54,7 @@
     <string name="cccp">ZSRR</string>
     <string name="usa">USA</string>
     <string name="thirdReich">III Rzesza</string>
-    <string name="official">Oficialne</string>
+    <string name="official">Oficjalne</string>
     <string name="unofficials">Nieoficjalne</string>
     <string name="all">Wszystkie</string>
 
