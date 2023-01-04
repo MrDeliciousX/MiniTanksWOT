@@ -7,10 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.io.IOException;
 
-public class CriticalActivity extends AppCompatActivity {
+public class CriticalHitActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     ListView lvCrits;
@@ -34,14 +33,14 @@ public class CriticalActivity extends AppCompatActivity {
         ShowCritsOnListView(dbHelper);
 
         lvCrits.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(CriticalActivity.this, RandomCritActivity.class);
+            Intent intent = new Intent(CriticalHitActivity.this, RandomCritActivity.class);
             intent.putExtra("index",position);
             startActivity(intent);
         });
     }
     void ShowCritsOnListView(DatabaseHelper databaseHelper) {
         critArrayAdapter = new ArrayAdapter<>(
-                CriticalActivity.this,
+                CriticalHitActivity.this,
                 android.R.layout.simple_list_item_1,
                 databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString)
         );
