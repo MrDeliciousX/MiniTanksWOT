@@ -1,6 +1,8 @@
 package com.mrdelicious.minitankswot;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +40,12 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
         showAbilitiesOnListView(dbHelper,2);
         fillFilters();
 
+        lvAbilities.setOnItemClickListener((parent, view, position, id) -> {
+            String ability = String.valueOf(parent.getItemAtPosition(position));
+            Intent intent = new Intent(AbilitiesActivity.this, AbilityProfileActivity.class);
+            intent.putExtra("name", ability);
+            startActivity(intent);
+        });
     }
     void showAbilitiesOnListView(DatabaseHelper databaseHelper, int official) {
         List<String> abilities = databaseHelper.getColumnFromDatabase(db_name,table,1, Cursor::getString);
@@ -70,7 +78,6 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
             spinnerOfficials.setAdapter(spinnerAdapter);
             spinnerOfficials.setOnItemSelectedListener(this);
         }
-
     }
 
     @Override

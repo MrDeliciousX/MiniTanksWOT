@@ -1,6 +1,8 @@
 package com.mrdelicious.minitankswot;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -23,14 +25,23 @@ public class TankProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tank_profile);
 
+
         Bundle clicked = getIntent().getExtras();
         String name = clicked.getString("name");
-
+        this.setTitle(name);
         String[] stats = getTankStats(name);
 
         imageFill(name);
         statisticFill(stats);
         showAbilitiesList(stats);
+
+        ListView lvAbilities = findViewById(R.id.tankProfile_listRules);
+        lvAbilities.setOnItemClickListener((parent, view, position, id) -> {
+            String ability = String.valueOf(parent.getItemAtPosition(position));
+            Intent intent = new Intent(TankProfileActivity.this, AbilityProfileActivity.class);
+            intent.putExtra("name", ability);
+            startActivity(intent);
+        });
     }
 
     String[] getTankStats(String name){

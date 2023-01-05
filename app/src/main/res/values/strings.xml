@@ -58,5 +58,6 @@
     <string name="unofficials">Nieoficjalne</string>
     <string name="all">Wszystkie</string>
     <string name="filter">Filtr</string>
+    <string name="AbilityName">Nazwa cechy</string>
 
 </resources>
