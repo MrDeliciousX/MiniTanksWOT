@@ -20,7 +20,7 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
     DatabaseHelper dbHelper;
     ListView lvAbilities;
     ArrayAdapter<String> abilitiesArrayAdapter;
-    String db_name = "db_abilities.db";
+    String db_name = "db_rules.db";
     String table = "ABILITIES_TABLE";
 
     @Override

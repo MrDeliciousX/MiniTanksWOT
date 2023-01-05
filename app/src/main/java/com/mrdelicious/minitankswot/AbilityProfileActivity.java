@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AbilityProfileActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
-    String db_name = "db_abilities.db";
+    String db_name = "db_rules.db";
     String table = "ABILITIES_TABLE";
 
     @Override
@@ -39,6 +40,12 @@ public class AbilityProfileActivity extends AppCompatActivity {
     }
     String[] getAbilityContent(String name){
         dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
+        try {
+            dbHelper.createDataBase(db_name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         String[] content = new String[3];
         List<String> names = dbHelper.getColumnFromDatabase(db_name,table,1, Cursor::getString);
         List<String> texts = dbHelper.getColumnFromDatabase(db_name,table,2,Cursor::getString);
