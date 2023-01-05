@@ -8,34 +8,34 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.List;
 
-public class AbilityProfileActivity extends AppCompatActivity {
+public class TerrainProfileActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     String db_name = "db_rules.db";
-    String table = "ABILITIES_TABLE";
+    String table = "TERRAIN_TABLE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ability_profile);
+        setContentView(R.layout.activity_terrain_profile);
 
         Bundle clicked = getIntent().getExtras();
         String name = clicked.getString("name");
         this.setTitle(name);
 
-        TextView title = findViewById(R.id.abilityProfile_name);
+        TextView title = findViewById(R.id.terrainProfile_name);
         title.setText(name);
 
-        TextView official = findViewById(R.id.abilityProfile_official);
-        TextView text = findViewById(R.id.abilityProfile_text);
+        TextView official = findViewById(R.id.terrainProfile_official);
+        TextView text = findViewById(R.id.terrainProfile_text);
 
-        String[] ability = getAbilityContent(name);
+        String[] ability = getTerrainContent(name);
         text.setText(ability[1]);
 
         if (ability[2].equals("1"))
             official.setVisibility(View.INVISIBLE);
     }
-    String[] getAbilityContent(String name){
+    String[] getTerrainContent(String name){
         dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
         try {
             dbHelper.createDataBase(db_name);

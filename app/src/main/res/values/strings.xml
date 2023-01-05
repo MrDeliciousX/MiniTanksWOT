@@ -59,5 +59,6 @@
     <string name="all">Wszystkie</string>
     <string name="filter">Filtr</string>
     <string name="AbilityName">Nazwa cechy</string>
+    <string name="terrainName">nazwa terenu</string>
 
 </resources>

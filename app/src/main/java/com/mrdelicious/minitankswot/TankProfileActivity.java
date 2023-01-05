@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -113,8 +114,7 @@ public class TankProfileActivity extends AppCompatActivity {
             else if (j+i==12) j++;
         }
         textView = findViewById(R.id.tankProfile_official);
-        if (stats[3].equals("0")) textView.setText(R.string.unofficial);
-        else textView.setText("");
+        if (!stats[3].equals("0")) textView.setVisibility(View.INVISIBLE);
     }
     void imageFill(String name){
         ImageView image = findViewById(R.id.tankProfile_image);

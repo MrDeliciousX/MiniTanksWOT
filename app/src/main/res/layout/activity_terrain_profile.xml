@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AbilityProfileActivity">
+    tools:context=".TerrainProfileActivity">
 
     <TextView
-        android:id="@+id/abilityProfile_name"
+        android:id="@+id/terrainProfile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/AbilityName"
+        android:text="@string/terrainName"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/abilityProfile_official"
+        android:id="@+id/terrainProfile_official"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -27,18 +27,18 @@
         android:textColor="#C10000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abilityProfile_name" />
+        app:layout_constraintTop_toBottomOf="@+id/terrainProfile_name" />
 
     <TextView
-        android:id="@+id/abilityProfile_text"
+        android:id="@+id/terrainProfile_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
         android:text="@string/lack"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abilityProfile_official" />
+        app:layout_constraintTop_toBottomOf="@+id/terrainProfile_official" />
 </androidx.constraintlayout.widget.ConstraintLayout>
