@@ -119,6 +119,7 @@ public class TankProfileActivity extends AppCompatActivity {
     void imageFill(String name){
         ImageView image = findViewById(R.id.tankProfile_image);
         StringBuilder nameHelper = new StringBuilder();
+        nameHelper.append("tank_");
         for (int i = 0; i < name.length(); i++) {
             if(name.charAt(i)==' ' || name.charAt(i)=='-' || name.charAt(i)=='(' || name.charAt(i)==')' || name.charAt(i)=='.'){
                 nameHelper.append('_');
