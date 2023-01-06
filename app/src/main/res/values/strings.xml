@@ -14,7 +14,7 @@
     <string name="advantage">przewaga</string>
     <string name="left">lewy</string>
     <string name="right">prawy</string>
-    <string name="close">bliski zasięg</string>
+    <string name="close_range">bliski zasięg</string>
     <string name="movement">ruch</string>
     <string name="critical">Trafienia krytyczne</string>
     <string name="button_random_crit">Losuj trafienie krytyczne</string>
@@ -62,5 +62,9 @@
     <string name="terrainName">nazwa terenu</string>
     <string name="stationary">Nieruchomy</string>
     <string name="japan">Japonia</string>
+    <string name="close">Zamknij</string>
+    <string name="whats_new">Co nowego?</string>
+    <string name="dontShowAgain">Nie pokazuj ponownie</string>
+    <string name="appVersion">Version 1.1.0</string>
 
 </resources>

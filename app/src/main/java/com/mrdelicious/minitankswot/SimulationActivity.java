@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,7 +51,7 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
 
     boolean advantage(){
         final boolean[] left = {false};
-        ToggleButton toggle = (ToggleButton) findViewById(R.id.sim_advantageButton);
+        ToggleButton toggle = findViewById(R.id.sim_advantageButton);
         toggle.setOnCheckedChangeListener((buttonView, isChecked) -> left[0] = isChecked);
         return left[0];
     }
