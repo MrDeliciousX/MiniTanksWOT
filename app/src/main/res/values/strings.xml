@@ -33,7 +33,7 @@
     <string name="stat_initiative">I</string>
     <string name="stat_hp">HP</string>
     <string name="stat_type">Typ pojazdu</string>
-    <string name="stat_tier">Tier</string>
+    <string name="stat_tier">Poziom</string>
     <string name="stat_nation">Kraj</string>
     <string name="stat_cost">Koszt</string>
     <string name="stat_special_rules">Specjalne zasady:</string>
@@ -60,5 +60,6 @@
     <string name="filter">Filtr</string>
     <string name="AbilityName">Nazwa cechy</string>
     <string name="terrainName">nazwa terenu</string>
+    <string name="stationary">Nieruchomy</string>
 
 </resources>

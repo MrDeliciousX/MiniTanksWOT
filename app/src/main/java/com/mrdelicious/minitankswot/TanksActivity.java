@@ -36,11 +36,9 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         fillFilters();
 
         dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
-        try {
-            dbHelper.createDataBase(db_name);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try { dbHelper.createDataBase(db_name); }
+        catch (IOException e) { e.printStackTrace(); }
+
         showTanksOnListView(dbHelper,"",0,"",2);
 
         lvTanks.setOnItemClickListener((parent, view, position, id) -> {
@@ -118,7 +116,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
 
         spinnerTiers = findViewById(R.id.tanks_filterTier);
         ArrayList<CustomSpinner> tierList = new ArrayList<>();
-        tierList.add(new CustomSpinner("Tier",0));
+        tierList.add(new CustomSpinner(getString(R.string.stat_tier),0));
         tierList.add(new CustomSpinner("I",0));
         tierList.add(new CustomSpinner("II",0));
         tierList.add(new CustomSpinner("III",0));
@@ -145,9 +143,6 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
             spinnerOfficials.setAdapter(spinnerAdapterOfficial);
             spinnerOfficials.setOnItemSelectedListener(this);
         }
-    }
-    public void searchTanks(View view){
-        showTanksOnListView(dbHelper,nation,tier,type,official);
     }
 
     @Override
@@ -188,7 +183,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
             case "Wielka Brytania":
                 nation = "gb";
                 break;
-            case "Tier":
+            case "Poziom":
                 tier = 0;
                 break;
             case "I":
@@ -231,6 +226,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
                 official = 0;
                 break;
         }
+        showTanksOnListView(dbHelper,nation,tier,type,official);
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

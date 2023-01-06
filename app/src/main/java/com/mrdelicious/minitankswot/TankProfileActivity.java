@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -25,7 +27,9 @@ public class TankProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tank_profile);
-
+        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
+        try { dbHelper.createDataBase(db_name); }
+        catch (IOException e) { e.printStackTrace(); }
 
         Bundle clicked = getIntent().getExtras();
         String name = clicked.getString("name");

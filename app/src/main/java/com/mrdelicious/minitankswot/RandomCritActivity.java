@@ -13,7 +13,7 @@ import java.util.Random;
 public class RandomCritActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
-    String db_name = "db_crit_cards.db";
+    String db_name = "db_cards.db";
     String table = "CRITS_TABLE";
 
     @SuppressLint("SetTextI18n")

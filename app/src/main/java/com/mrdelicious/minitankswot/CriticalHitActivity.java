@@ -14,7 +14,7 @@ public class CriticalHitActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     ListView lvCrits;
     ArrayAdapter<String> critArrayAdapter;
-    String db_name = "db_crit_cards.db";
+    String db_name = "db_cards.db";
     String table = "CRITS_TABLE";
 
     @Override
