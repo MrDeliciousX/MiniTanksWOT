@@ -1,7 +1,8 @@
-package com.mrdelicious.minitankswot;
+package com.mrdelicious.minitankswot.rosters;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.mrdelicious.minitankswot.R;
 
 public class RostersActivity extends AppCompatActivity {
 

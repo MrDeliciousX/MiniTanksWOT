@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:rotationY="0"
-    tools:context=".SimulationActivity">
+    tools:context=".simulation.SimulationActivity">
 
     <TextView
         android:id="@+id/sim_vs"

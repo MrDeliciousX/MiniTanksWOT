@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RandomCritActivity">
+    tools:context=".cards.crits.RandomCritActivity">
 
     <TextView
         android:id="@+id/randomCrit_name"
@@ -42,14 +42,15 @@
         android:text="@string/button_random_crit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/randomCrit_isRepairable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="@string/if_repairable"
+        android:text="@string/repairable"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"

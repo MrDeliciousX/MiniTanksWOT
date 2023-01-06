@@ -1,27 +1,28 @@
-package com.mrdelicious.minitankswot;
+package com.mrdelicious.minitankswot.rules.abilities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.room.Room;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import java.io.IOException;
+import com.mrdelicious.minitankswot.CustomSpinner;
+import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.SpinnerAdapter;
+import com.mrdelicious.minitankswot.rules.RulesDatabase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AbilitiesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    DatabaseHelper dbHelper;
+    RulesDatabase db;
     ListView lvAbilities;
     ArrayAdapter<String> abilitiesArrayAdapter;
     String db_name = "db_rules.db";
-    String table = "abilities";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +31,12 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
         this.setTitle("Cechy pojazdów");
         lvAbilities = findViewById(R.id.abilities_list);
 
-        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
-        try {
-            dbHelper.createDataBase(db_name);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        db = Room.databaseBuilder(this, RulesDatabase.class, db_name)
+                .allowMainThreadQueries()
+                .createFromAsset("databases/" + db_name)
+                .build();
 
-        showAbilitiesOnListView(dbHelper,2);
+        showAbilitiesOnListView(2);
         fillFilters();
 
         lvAbilities.setOnItemClickListener((parent, view, position, id) -> {
@@ -47,17 +46,18 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
             startActivity(intent);
         });
     }
-    void showAbilitiesOnListView(DatabaseHelper databaseHelper, int official) {
-        List<String> abilities = databaseHelper.getColumnFromDatabase(db_name,table,1, Cursor::getString);
-        List<Integer> officials = databaseHelper.getColumnFromDatabase(db_name,table,3,Cursor::getInt);
+    void showAbilitiesOnListView(int official) {
         List<String> findAbilities = new ArrayList<>();
-        for (int i = 0; i < abilities.size(); i++) {
-            boolean good = true;
-            if (official != 2)
-                if (officials.get(i) != official)
-                    good = false;
-            if (good)
-                findAbilities.add(abilities.get(i));
+        switch (official){
+            case 0:
+                findAbilities = db.abilityDao().findByOfficial(0);
+                break;
+            case 1:
+                findAbilities = db.abilityDao().findByOfficial(1);
+                break;
+            case 2:
+                findAbilities = db.abilityDao().getAllNames();
+                break;
         }
 
         abilitiesArrayAdapter = new ArrayAdapter<>(
@@ -86,13 +86,13 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
         String chosenFilter=items.getSpinnerText();
         switch (chosenFilter) {
             case "Wszystkie":
-                showAbilitiesOnListView(dbHelper,2);
+                showAbilitiesOnListView(2);
                 break;
             case "Oficjalne":
-                showAbilitiesOnListView(dbHelper,1);
+                showAbilitiesOnListView(1);
                 break;
             case "Nieoficjalne":
-                showAbilitiesOnListView(dbHelper,0);
+                showAbilitiesOnListView(0);
                 break;
         }
     }

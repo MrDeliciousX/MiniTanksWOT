@@ -20,31 +20,23 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TerrainProfileActivity"
+            android:name=".rules.terrains.TerrainProfileActivity"
             android:exported="false"
-            android:parentActivityName=".TerrainsActivity">
+            android:parentActivityName=".rules.terrains.TerrainsActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AbilityProfileActivity"
+            android:name=".rules.abilities.AbilityProfileActivity"
             android:exported="false"
-            android:parentActivityName=".AbilitiesActivity">
+            android:parentActivityName=".rules.abilities.AbilitiesActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".TerrainsActivity"
-            android:exported="false"
-            android:parentActivityName=".GameActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".AbilitiesActivity"
+            android:name=".rules.terrains.TerrainsActivity"
             android:exported="false"
             android:parentActivityName=".GameActivity">
             <meta-data
@@ -52,15 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RandomCritActivity"
-            android:exported="false"
-            android:parentActivityName=".CriticalHitActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".CriticalHitActivity"
+            android:name=".rules.abilities.AbilitiesActivity"
             android:exported="false"
             android:parentActivityName=".GameActivity">
             <meta-data
@@ -68,15 +52,31 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TankProfileActivity"
+            android:name=".cards.crits.RandomCritActivity"
             android:exported="false"
-            android:parentActivityName=".TanksActivity">
+            android:parentActivityName=".cards.crits.CriticalHitActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RostersActivity"
+            android:name=".cards.crits.CriticalHitActivity"
+            android:exported="false"
+            android:parentActivityName=".GameActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".tanks.TankProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".tanks.TanksActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".rosters.RostersActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -84,7 +84,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SimulationActivity"
+            android:name=".simulation.SimulationActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -100,7 +100,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TanksActivity"
+            android:name=".tanks.TanksActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data

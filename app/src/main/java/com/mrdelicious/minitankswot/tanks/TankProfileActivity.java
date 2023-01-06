@@ -1,44 +1,43 @@
-package com.mrdelicious.minitankswot;
+package com.mrdelicious.minitankswot.tanks;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.room.Room;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.io.IOException;
+import com.mrdelicious.minitankswot.rules.abilities.AbilityProfileActivity;
+import com.mrdelicious.minitankswot.R;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class TankProfileActivity extends AppCompatActivity {
 
-    DatabaseHelper dbHelper;
+    TankDatabase db;
     String db_name = "db_tanks.db";
-    String table = "tanks";
-    List<String> names, sList, oList, mList, iList, hpList, hpColors, crews, tiers, types, skillList, nations, histList, costs, officials, ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tank_profile);
-        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
-        try { dbHelper.createDataBase(db_name); }
-        catch (IOException e) { e.printStackTrace(); }
+
+        db = Room.databaseBuilder(this, TankDatabase.class, db_name)
+                .allowMainThreadQueries()
+                .createFromAsset("databases/" + db_name)
+                .build();
 
         Bundle clicked = getIntent().getExtras();
         String name = clicked.getString("name");
         this.setTitle(name);
-        String[] stats = getTankStats(name);
 
+        Tank tank = db.tankDao().findByName(name);
         imageFill(name);
-        statisticFill(stats);
-        showAbilitiesList(stats);
+        statisticFill(tank);
+        showAbilitiesList(tank);
 
         ListView lvAbilities = findViewById(R.id.tankProfile_listRules);
         lvAbilities.setOnItemClickListener((parent, view, position, id) -> {
@@ -49,42 +48,6 @@ public class TankProfileActivity extends AppCompatActivity {
         });
     }
 
-    String[] getTankStats(String name){
-        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
-        String[] content = new String[16];
-        List<List<String>> listNames = new ArrayList<>();
-        listNames.add(ids);
-        listNames.add(names);
-        listNames.add(costs);
-        listNames.add(officials);
-        listNames.add(sList);
-        listNames.add(oList);
-        listNames.add(mList);
-        listNames.add(iList);
-        listNames.add(hpList);
-        listNames.add(hpColors);
-        listNames.add(crews);
-        listNames.add(tiers);
-        listNames.add(types);
-        listNames.add(skillList);
-        listNames.add(nations);
-        listNames.add(histList);
-
-        for (int i = 0; i < 16; i++) {
-            listNames.set(i,dbHelper.getColumnFromDatabase(db_name,table,i,Cursor::getString));
-        }
-        int index = 0;
-        for (int i = 0; i < listNames.get(1).size(); i++) {
-            if (listNames.get(1).get(i).equals(name)){
-                index = i;
-            }
-        }
-        for (int i = 0; i < 16; i++) {
-            content[i] = listNames.get(i).get(index);
-        }
-
-        return content;
-    }
     List<String> textToList(String text){
         List<String> lista = new ArrayList<>();
         StringBuilder helper = new StringBuilder();
@@ -104,22 +67,35 @@ public class TankProfileActivity extends AppCompatActivity {
 
         return lista;
     }
-    void statisticFill(String[] stats){
-        String[] helper = {"tankName","costV","firepowerV","defV","moveV","initiativeV","HPV","tierV","typeV","nationV","history"};
-        TextView textView;
-        int j = 1;
-        for (int i = 0; i < 11; i++) {
-            String id = "tankProfile_" + helper[i];
-            int resID = getResources().getIdentifier(id,"id",getPackageName());
-            textView = findViewById(resID);
-            textView.setText(stats[j+i]);
-            if (j+i==2) j++;
-            else if (j+i==8) j+=2;
-            else if (j+i==12) j++;
-        }
+
+    void statisticFill(Tank tank){
+        TextView textView = findViewById(R.id.tankProfile_tankName);
+        textView.setText(tank.tankName);
+        textView = findViewById(R.id.tankProfile_firepowerV);
+        textView.setText(String.valueOf(tank.firepower));
+        textView = findViewById(R.id.tankProfile_defV);
+        textView.setText(String.valueOf(tank.survivability));
+        textView = findViewById(R.id.tankProfile_moveV);
+        textView.setText(String.valueOf(tank.mobility));
+        textView = findViewById(R.id.tankProfile_initiativeV);
+        textView.setText(String.valueOf(tank.initiative));
+        textView = findViewById(R.id.tankProfile_costV);
+        textView.setText(String.valueOf(tank.tankCost));
+        textView = findViewById(R.id.tankProfile_HPV);
+        textView.setText(String.valueOf(tank.hp));
+        textView = findViewById(R.id.tankProfile_history);
+        textView.setText(tank.history);
+        textView = findViewById(R.id.tankProfile_typeV);
+        textView.setText(tank.type);
+        textView = findViewById(R.id.tankProfile_nationV);
+        textView.setText(tank.nation);
+        textView = findViewById(R.id.tankProfile_tierV);
+        textView.setText(String.valueOf(tank.tier));
+
         textView = findViewById(R.id.tankProfile_official);
-        if (!stats[3].equals("0")) textView.setVisibility(View.INVISIBLE);
+        if (tank.isOfficial == 1) textView.setVisibility(View.INVISIBLE);
     }
+
     void imageFill(String name){
         ImageView image = findViewById(R.id.tankProfile_image);
         StringBuilder nameHelper = new StringBuilder();
@@ -133,10 +109,11 @@ public class TankProfileActivity extends AppCompatActivity {
         int imageHelper = getResources().getIdentifier(nameHelper.toString(), "drawable", getPackageName());
         image.setImageResource(imageHelper);
     }
-    public void showAbilitiesList(String[] stats){
+
+    public void showAbilitiesList(Tank tank){
         ListView tankSkills = findViewById(R.id.tankProfile_listRules);
         List<String> tankSkillsHelper;
-        tankSkillsHelper = textToList(stats[13]);
+        tankSkillsHelper = textToList(tank.abilities);
         ArrayAdapter<String> skillsArrayAdapter = new ArrayAdapter<>(
                 TankProfileActivity.this,
                 android.R.layout.simple_list_item_1,

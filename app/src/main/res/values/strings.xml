@@ -21,7 +21,7 @@
     <string name="crit_list">Lista trafień krytycznych</string>
     <string name="crit_name">Nazwa trafienia krytycznego</string>
     <string name="crit_content">Treść karty</string>
-    <string name="if_repairable">czy naprawialne</string>
+    <string name="repairable">Naprawialne</string>
     <string name="damage">Uszkodzenia: </string>
     <string name="zero">0</string>
     <string name="chance">Szansa wylosowania: </string>
@@ -65,6 +65,6 @@
     <string name="close">Zamknij</string>
     <string name="whats_new">Co nowego?</string>
     <string name="dontShowAgain">Nie pokazuj ponownie</string>
-    <string name="appVersion">Version 1.1.0</string>
+    <string name="appVersion">Version 2.0.0</string>
 
 </resources>

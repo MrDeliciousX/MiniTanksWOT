@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.mrdelicious.minitankswot.rosters.RostersActivity;
+import com.mrdelicious.minitankswot.simulation.SimulationActivity;
+import com.mrdelicious.minitankswot.tanks.TanksActivity;
 
-    static String dontShowAgainKey = "com.mrdelicious.minitankswot.dontShowAgainKey";
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         appVersion.setText(R.string.appVersion);
     }
     public void showTankList(View view) {
-        Intent intent = new Intent(this,TanksActivity.class);
+        Intent intent = new Intent(this, TanksActivity.class);
         startActivity(intent);
     }
     public void showGame(View view) {
@@ -26,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void openSimulation(View view) {
-        Intent intent = new Intent(this,SimulationActivity.class);
+        Intent intent = new Intent(this, SimulationActivity.class);
         startActivity(intent);
     }
     public void showRosters(View view) {
-        Intent intent = new Intent(this,RostersActivity.class);
+        Intent intent = new Intent(this, RostersActivity.class);
         startActivity(intent);
     }
 }

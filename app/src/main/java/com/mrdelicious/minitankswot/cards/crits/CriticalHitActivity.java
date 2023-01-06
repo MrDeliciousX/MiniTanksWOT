@@ -1,21 +1,23 @@
-package com.mrdelicious.minitankswot;
+package com.mrdelicious.minitankswot.cards.crits;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import java.io.IOException;
+import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.cards.CardsDatabase;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CriticalHitActivity extends AppCompatActivity {
 
-    DatabaseHelper dbHelper;
+    CardsDatabase db;
     ListView lvCrits;
     ArrayAdapter<String> critArrayAdapter;
     String db_name = "db_cards.db";
-    String table = "crits";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +26,26 @@ public class CriticalHitActivity extends AppCompatActivity {
         lvCrits = findViewById(R.id.critical_listCrits);
         this.setTitle("Uszkodzenia krytyczne");
 
-        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
-        try {
-            dbHelper.createDataBase(db_name);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ShowCritsOnListView(dbHelper);
+        db = Room.databaseBuilder(this, CardsDatabase.class, db_name)
+                .allowMainThreadQueries()
+                .createFromAsset("databases/" + db_name)
+                .build();
+
+        ShowCritsOnListView();
 
         lvCrits.setOnItemClickListener((parent, view, position, id) -> {
+            String crit = String.valueOf(parent.getItemAtPosition(position));
             Intent intent = new Intent(CriticalHitActivity.this, RandomCritActivity.class);
-            intent.putExtra("index",position);
+            intent.putExtra("name",crit);
             startActivity(intent);
         });
     }
-    void ShowCritsOnListView(DatabaseHelper databaseHelper) {
+    void ShowCritsOnListView() {
+        List<String> crits = db.critDao().getAllNames();
         critArrayAdapter = new ArrayAdapter<>(
                 CriticalHitActivity.this,
                 android.R.layout.simple_list_item_1,
-                databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString)
+                crits
         );
         lvCrits.setAdapter(critArrayAdapter);
     }

@@ -1,8 +1,8 @@
-package com.mrdelicious.minitankswot;
+package com.mrdelicious.minitankswot.simulation;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 import android.annotation.SuppressLint;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,15 +11,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
-import java.io.IOException;
+import com.mrdelicious.minitankswot.CustomSpinner;
+import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.SpinnerAdapter;
+import com.mrdelicious.minitankswot.tanks.TankDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    DatabaseHelper dbHelper;
-    String db_name = "db_tanks.db";
-    String table = "tanks";
+    TankDatabase dbTanks;
     int def1 = 0;
     int def2 = 0;
     boolean hide1 = false;
@@ -34,10 +35,12 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_simulation);
         this.setTitle("Symulacja 1vs1");
 
-        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
-        try { dbHelper.createDataBase(db_name); }
-        catch (IOException e) { e.printStackTrace(); }
-        names = dbHelper.getColumnFromDatabase(db_name,table,1, Cursor::getString);
+        dbTanks = Room.databaseBuilder(this, TankDatabase.class, "db_tanks.db")
+                .allowMainThreadQueries()
+                .createFromAsset("databases/db_tanks.db")
+                .build();
+
+        names = dbTanks.tankDao().getAllNames();
 
         AutoCompleteTextView name1 = findViewById(R.id.sim_nameTank1);
         AutoCompleteTextView name2 = findViewById(R.id.sim_nameTank2);

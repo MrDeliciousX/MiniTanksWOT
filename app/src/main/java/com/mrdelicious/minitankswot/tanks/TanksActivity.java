@@ -1,26 +1,27 @@
-package com.mrdelicious.minitankswot;
+package com.mrdelicious.minitankswot.tanks;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import java.io.IOException;
+import com.mrdelicious.minitankswot.CustomSpinner;
+import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.SpinnerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TanksActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    DatabaseHelper dbHelper;
+    TankDatabase db;
     ListView lvTanks;
     ArrayAdapter<String> tankArrayAdapter;
     String db_name = "db_tanks.db";
-    String table = "tanks";
     String nation = "";
     String type = "";
     int tier = 0;
@@ -33,13 +34,14 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         lvTanks = findViewById(R.id.tanks_tankList);
         this.setTitle("Lista Czołgów");
 
+        db = Room.databaseBuilder(this, TankDatabase.class, db_name)
+                .allowMainThreadQueries()
+                .createFromAsset("databases/" + db_name)
+                .build();
+
         fillFilters();
 
-        dbHelper = new DatabaseHelper(getApplicationContext(),db_name);
-        try { dbHelper.createDataBase(db_name); }
-        catch (IOException e) { e.printStackTrace(); }
-
-        showTanksOnListView(dbHelper,"",0,"",2);
+        showTanksOnListView("",0,"",2);
 
         lvTanks.setOnItemClickListener((parent, view, position, id) -> {
             String tank = String.valueOf(parent.getItemAtPosition(position));
@@ -48,39 +50,37 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
             startActivity(intent);
         });
     }
-    void showTanksOnListView(DatabaseHelper databaseHelper,String nation,int tier,String type,int official) {
-        List<String> tanks = databaseHelper.getColumnFromDatabase(db_name, table,1, Cursor::getString);
-        List<String> nations = databaseHelper.getColumnFromDatabase(db_name,table,14,Cursor::getString);
-        List<Integer> tiers = databaseHelper.getColumnFromDatabase(db_name,table,11,Cursor::getInt);
-        List<Integer> officials = databaseHelper.getColumnFromDatabase(db_name,table,3,Cursor::getInt);
-        List<String> types = databaseHelper.getColumnFromDatabase(db_name,table,12,Cursor::getString);
-        List<String> findTanks = new ArrayList<>();
+
+    void showTanksOnListView(String nation,int tier,String type,int official) {
+        List<Tank> tanks = db.tankDao().getAll();
+        List<String> foundTanks = new ArrayList<>();
 
         for (int i = 0; i < tanks.size(); i++) {
             boolean good = true;
             if (!nation.equals(""))
-                if (!nation.equals(nations.get(i)))
+                if (!nation.equals(tanks.get(i).nation))
                     good = false;
             if (tier != 0)
-                if (tier != tiers.get(i))
+                if (tier != tanks.get(i).tier)
                     good = false;
             if (!type.equals(""))
-                if (!type.equals(types.get(i)))
+                if (!type.equals(tanks.get(i).type))
                     good = false;
             if (official != 2)
-                if (official != officials.get(i))
+                if (official != tanks.get(i).isOfficial)
                     good = false;
             if (good)
-                findTanks.add(tanks.get(i));
+                foundTanks.add(tanks.get(i).tankName);
         }
 
         tankArrayAdapter = new ArrayAdapter<>(
                 TanksActivity.this,
                 android.R.layout.simple_list_item_1,
-                findTanks.stream().sorted().collect(Collectors.toList())
+                foundTanks.stream().sorted().collect(Collectors.toList())
         );
         lvTanks.setAdapter(tankArrayAdapter);
     }
+
     void fillFilters(){
         Spinner spinnerTypes;
         Spinner spinnerNations;
@@ -230,10 +230,9 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
                 official = 0;
                 break;
         }
-        showTanksOnListView(dbHelper,nation,tier,type,official);
+        showTanksOnListView(nation,tier,type,official);
     }
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
 
-    }
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {}
 }
