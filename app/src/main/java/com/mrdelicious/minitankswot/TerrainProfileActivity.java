@@ -12,7 +12,7 @@ public class TerrainProfileActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     String db_name = "db_rules.db";
-    String table = "TERRAIN_TABLE";
+    String table = "terrains";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

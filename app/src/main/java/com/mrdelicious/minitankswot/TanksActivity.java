@@ -20,7 +20,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
     ListView lvTanks;
     ArrayAdapter<String> tankArrayAdapter;
     String db_name = "db_tanks.db";
-    String table = "TANKS_TABLE";
+    String table = "tanks";
     String nation = "";
     String type = "";
     int tier = 0;

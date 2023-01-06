@@ -19,7 +19,7 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
 
     DatabaseHelper dbHelper;
     String db_name = "db_tanks.db";
-    String table = "TANKS_TABLE";
+    String table = "tanks";
     int def1 = 0;
     int def2 = 0;
     boolean hide1 = false;

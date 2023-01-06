@@ -20,7 +20,7 @@ public class TerrainsActivity extends AppCompatActivity implements AdapterView.O
     ListView lvTerrains;
     ArrayAdapter<String> abilitiesArrayAdapter;
     String db_name = "db_rules.db";
-    String table = "TERRAIN_TABLE";
+    String table = "terrains";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

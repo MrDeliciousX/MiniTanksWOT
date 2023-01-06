@@ -21,7 +21,7 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
     ListView lvAbilities;
     ArrayAdapter<String> abilitiesArrayAdapter;
     String db_name = "db_rules.db";
-    String table = "ABILITIES_TABLE";
+    String table = "abilities";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

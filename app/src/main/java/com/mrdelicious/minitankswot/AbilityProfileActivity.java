@@ -12,7 +12,7 @@ public class AbilityProfileActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     String db_name = "db_rules.db";
-    String table = "ABILITIES_TABLE";
+    String table = "abilities";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

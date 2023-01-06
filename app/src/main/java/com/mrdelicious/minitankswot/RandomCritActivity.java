@@ -14,7 +14,7 @@ public class RandomCritActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     String db_name = "db_cards.db";
-    String table = "CRITS_TABLE";
+    String table = "crits";
 
     @SuppressLint("SetTextI18n")
     @Override

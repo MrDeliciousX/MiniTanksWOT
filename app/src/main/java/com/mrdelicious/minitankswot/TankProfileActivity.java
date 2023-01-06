@@ -20,7 +20,7 @@ public class TankProfileActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     String db_name = "db_tanks.db";
-    String table = "TANKS_TABLE";
+    String table = "tanks";
     List<String> names, sList, oList, mList, iList, hpList, hpColors, crews, tiers, types, skillList, nations, histList, costs, officials, ids;
 
     @Override
