@@ -61,5 +61,6 @@
     <string name="AbilityName">Nazwa cechy</string>
     <string name="terrainName">nazwa terenu</string>
     <string name="stationary">Nieruchomy</string>
+    <string name="japan">Japonia</string>
 
 </resources>

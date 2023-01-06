@@ -108,6 +108,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         nationsList.add(new CustomSpinner(getString(R.string.usa),R.drawable.flag_usa));
         nationsList.add(new CustomSpinner(getString(R.string.cccp),R.drawable.flag_zsrr));
         nationsList.add(new CustomSpinner(getString(R.string.greatBritain),R.drawable.flag_gb));
+        nationsList.add(new CustomSpinner(getString(R.string.japan),R.drawable.flag_japan));
         SpinnerAdapter spinnerAdapterNations = new SpinnerAdapter(this,nationsList);
         if (spinnerNations != null){
             spinnerNations.setAdapter(spinnerAdapterNations);
@@ -182,6 +183,9 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
                 break;
             case "Wielka Brytania":
                 nation = "gb";
+                break;
+            case "Japonia":
+                nation = "japan";
                 break;
             case "Poziom":
                 tier = 0;
