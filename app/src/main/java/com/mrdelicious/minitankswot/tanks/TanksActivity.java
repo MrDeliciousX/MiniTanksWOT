@@ -149,7 +149,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         CustomSpinner items = (CustomSpinner)parent.getSelectedItem();
-        String chosenFilter=items.getSpinnerText();
+        String chosenFilter = items.getSpinnerText();
         switch (chosenFilter) {
             case "Typ":
                 type = "";

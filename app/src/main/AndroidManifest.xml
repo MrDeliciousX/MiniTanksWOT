@@ -13,6 +13,14 @@
         android:theme="@style/Theme.MiniTanksWOT"
         tools:targetApi="31">
         <activity
+            android:name=".simulation.SimResultActivity"
+            android:exported="false"
+            android:parentActivityName=".simulation.SimulationActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".WhatsNewWindowActivity"
             android:exported="false">
             <meta-data

@@ -35,7 +35,8 @@ public class TankProfileActivity extends AppCompatActivity {
         this.setTitle(name);
 
         Tank tank = db.tankDao().findByName(name);
-        imageFill(name);
+        ImageView image = findViewById(R.id.tankProfile_image);
+        imageFill(name,image);
         statisticFill(tank);
         showAbilitiesList(tank);
 
@@ -96,8 +97,7 @@ public class TankProfileActivity extends AppCompatActivity {
         if (tank.isOfficial == 1) textView.setVisibility(View.INVISIBLE);
     }
 
-    void imageFill(String name){
-        ImageView image = findViewById(R.id.tankProfile_image);
+    void imageFill(String name, ImageView image){
         StringBuilder nameHelper = new StringBuilder();
         nameHelper.append("tank_");
         for (int i = 0; i < name.length(); i++) {

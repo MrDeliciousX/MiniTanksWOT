@@ -3,6 +3,7 @@ package com.mrdelicious.minitankswot.simulation;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,9 +26,8 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
     int def2 = 0;
     boolean hide1 = false;
     boolean hide2 = false;
-    int attack1 = 0;
-    int attack2 = 0;
     List<String> names = new ArrayList<>();
+    AutoCompleteTextView name1, name2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,8 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
 
         names = dbTanks.tankDao().getAllNames();
 
-        AutoCompleteTextView name1 = findViewById(R.id.sim_nameTank1);
-        AutoCompleteTextView name2 = findViewById(R.id.sim_nameTank2);
+        name1 = findViewById(R.id.sim_nameTank1);
+        name2 = findViewById(R.id.sim_nameTank2);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,names);
         name1.setAdapter(adapter);
         name2.setAdapter(adapter);
@@ -58,6 +58,7 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
         toggle.setOnCheckedChangeListener((buttonView, isChecked) -> left[0] = isChecked);
         return left[0];
     }
+
     @SuppressLint("NonConstantResourceId")
     public void onCheckboxClicked(View view) {
         boolean checked = ((CheckBox) view).isChecked();
@@ -99,6 +100,7 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
                 break;
         }
     }
+
     void fillFilters(){
         Spinner spinnerMove1;
         Spinner spinnerMove2;
@@ -120,16 +122,26 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
             spinnerMove2.setOnItemSelectedListener(this);
         }
     }
-    public void compare(View view){
 
+    public void compare(View view){
+        String tank1 = String.valueOf(name1.getText());
+        String tank2 = String.valueOf(name2.getText());
+
+        Intent intent = new Intent(this, SimResultActivity.class);
+        intent.putExtra("tank1", tank1);
+        intent.putExtra("tank2", tank2);
+        intent.putExtra("advantageRight", advantage());
+        intent.putExtra("def1", def1);
+        intent.putExtra("def2", def2);
+        intent.putExtra("hide1", hide1);
+        intent.putExtra("hide2", hide2);
+
+        startActivity(intent);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
     }
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 }

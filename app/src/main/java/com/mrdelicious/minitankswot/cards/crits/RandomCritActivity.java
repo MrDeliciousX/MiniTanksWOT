@@ -17,6 +17,7 @@ public class RandomCritActivity extends AppCompatActivity {
 
     CardsDatabase db;
     String db_name = "db_cards.db";
+    int amountCrits = 0;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -31,6 +32,9 @@ public class RandomCritActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .createFromAsset("databases/" + db_name)
                 .build();
+        for (int i = 0; i < db.critDao().getAll().size(); i++) {
+            amountCrits += db.critDao().getAll().get(i).amount;
+        }
 
         Bundle clicked = getIntent().getExtras();
         if (clicked != null) name = clicked.getString("name");
@@ -50,7 +54,7 @@ public class RandomCritActivity extends AppCompatActivity {
         dmg.setText(String.valueOf(db.critDao().findByName(name).damage));
 
         TextView chance = findViewById(R.id.randomCrit_chance);
-        chanceHelp = 100*(db.critDao().findByName(name).amount)/32;
+        chanceHelp = 100*(db.critDao().findByName(name).amount)/amountCrits;
         chance.setText(chanceHelp + "%");
 
         Button repeatButton = findViewById(R.id.randomCrit_buttonNew);
@@ -61,13 +65,13 @@ public class RandomCritActivity extends AppCompatActivity {
             if (db.critDao().findByName(newName).repairable != 1)
                 rep.setVisibility(View.INVISIBLE);
             dmg.setText(String.valueOf(db.critDao().findByName(newName).damage));
-            int chanceHelpNew = 100*(db.critDao().findByName(newName).amount)/32;
+            int chanceHelpNew = 100*(db.critDao().findByName(newName).amount)/amountCrits;
             chance.setText(chanceHelpNew + "%");
         });
     }
     String randomCritCard(){
         Random random = new Random();
-        int int_random = random.nextInt(32);
+        int int_random = random.nextInt(amountCrits);
 
         List<Crit> crits = db.critDao().getAll();
         List<String> karty = new ArrayList<>();
