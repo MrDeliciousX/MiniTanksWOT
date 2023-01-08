@@ -1,7 +1,5 @@
 package com.mrdelicious.minitankswot.simulation;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +10,21 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.CustomSpinner;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.SpinnerAdapter;
-import com.mrdelicious.minitankswot.tanks.TankDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    TankDatabase dbTanks;
+    EverythingDatabase dbTanks;
     int def1 = 0;
     int def2 = 0;
     boolean hide1 = false;
@@ -35,10 +38,7 @@ public class SimulationActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_simulation);
         this.setTitle("Symulacja 1vs1");
 
-        dbTanks = Room.databaseBuilder(this, TankDatabase.class, "db_tanks.db")
-                .allowMainThreadQueries()
-                .createFromAsset("databases/db_tanks.db")
-                .build();
+        dbTanks = App.getDB(this);
 
         names = dbTanks.tankDao().getAllNames();
 

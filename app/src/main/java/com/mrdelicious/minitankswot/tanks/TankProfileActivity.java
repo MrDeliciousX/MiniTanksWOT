@@ -1,7 +1,5 @@
 package com.mrdelicious.minitankswot.tanks;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,26 +7,28 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.mrdelicious.minitankswot.rules.abilities.AbilityProfileActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.rules.abilities.AbilityProfileActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class TankProfileActivity extends AppCompatActivity {
 
-    TankDatabase db;
-    String db_name = "db_tanks.db";
+    EverythingDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tank_profile);
 
-        db = Room.databaseBuilder(this, TankDatabase.class, db_name)
-                .allowMainThreadQueries()
-                .createFromAsset("databases/" + db_name)
-                .build();
+        db = App.getDB(this);
 
         Bundle clicked = getIntent().getExtras();
         String name = clicked.getString("name");

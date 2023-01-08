@@ -1,10 +1,11 @@
 package com.mrdelicious.minitankswot;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mrdelicious.minitankswot.rosters.RostersActivity;
 import com.mrdelicious.minitankswot.simulation.SimulationActivity;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView appVersion = findViewById(R.id.main_version);
+
         appVersion.setText(R.string.appVersion);
     }
     public void showTankList(View view) {

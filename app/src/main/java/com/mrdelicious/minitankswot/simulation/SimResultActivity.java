@@ -1,25 +1,25 @@
 package com.mrdelicious.minitankswot.simulation;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
-import com.mrdelicious.minitankswot.cards.CardsDatabase;
 import com.mrdelicious.minitankswot.cards.crits.Crit;
 import com.mrdelicious.minitankswot.tanks.Tank;
-import com.mrdelicious.minitankswot.tanks.TankDatabase;
 
 import java.util.List;
 import java.util.Locale;
 
 public class SimResultActivity extends AppCompatActivity {
 
-    TankDatabase dbTanks;
-    CardsDatabase dbCards;
+    EverythingDatabase dbTanks;
     Tank tank1, tank2;
     int def1, def2;
     int atk1, atk2;
@@ -32,14 +32,7 @@ public class SimResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sim_result);
         this.setTitle("Wynik porównania");
 
-        dbTanks = Room.databaseBuilder(this, TankDatabase.class, "db_tanks.db")
-                .allowMainThreadQueries()
-                .createFromAsset("databases/db_tanks.db")
-                .build();
-        dbCards = Room.databaseBuilder(this, CardsDatabase.class, "db_cards.db")
-                .allowMainThreadQueries()
-                .createFromAsset("databases/db_cards.db")
-                .build();
+        dbTanks = App.getDB(this);
 
         info = getIntent().getExtras();
         name1 = info.getString("tank1");
@@ -93,7 +86,7 @@ public class SimResultActivity extends AppCompatActivity {
         boolean hide1 = info.getBoolean("hide1");
         boolean hide2 = info.getBoolean("hide2");
 
-        List<Crit> critsDmg = dbCards.critDao().getAll();
+        List<Crit> critsDmg = dbTanks.critDao().getAll();
         double averageCritDamage = 0.0;
         int amount = 0;
         for (int i = 0; i < critsDmg.size(); i++) {

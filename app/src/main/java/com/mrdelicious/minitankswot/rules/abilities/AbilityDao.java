@@ -2,6 +2,7 @@ package com.mrdelicious.minitankswot.rules.abilities;
 
 import androidx.room.Dao;
 import androidx.room.Query;
+
 import java.util.List;
 
 @Dao

@@ -1,13 +1,13 @@
 package com.mrdelicious.minitankswot;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.mrdelicious.minitankswot.rules.abilities.AbilitiesActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.mrdelicious.minitankswot.cards.crits.CriticalHitActivity;
+import com.mrdelicious.minitankswot.rules.abilities.AbilitiesActivity;
 import com.mrdelicious.minitankswot.rules.terrains.TerrainsActivity;
 
 public class GameActivity extends AppCompatActivity {

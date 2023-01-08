@@ -1,22 +1,24 @@
 package com.mrdelicious.minitankswot.cards.crits;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
-import com.mrdelicious.minitankswot.cards.CardsDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class RandomCritActivity extends AppCompatActivity {
 
-    CardsDatabase db;
-    String db_name = "db_cards.db";
+    EverythingDatabase db;
     int amountCrits = 0;
 
     @SuppressLint("SetTextI18n")
@@ -28,10 +30,7 @@ public class RandomCritActivity extends AppCompatActivity {
         String name;
         int chanceHelp;
 
-        db = Room.databaseBuilder(this, CardsDatabase.class, db_name)
-                .allowMainThreadQueries()
-                .createFromAsset("databases/" + db_name)
-                .build();
+        db = App.getDB(this);
         for (int i = 0; i < db.critDao().getAll().size(); i++) {
             amountCrits += db.critDao().getAll().get(i).amount;
         }

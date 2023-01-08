@@ -1,23 +1,24 @@
 package com.mrdelicious.minitankswot.cards.crits;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
-import com.mrdelicious.minitankswot.cards.CardsDatabase;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class CriticalHitActivity extends AppCompatActivity {
 
-    CardsDatabase db;
+    EverythingDatabase db;
     ListView lvCrits;
     ArrayAdapter<String> critArrayAdapter;
-    String db_name = "db_cards.db";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +27,7 @@ public class CriticalHitActivity extends AppCompatActivity {
         lvCrits = findViewById(R.id.critical_listCrits);
         this.setTitle("Uszkodzenia krytyczne");
 
-        db = Room.databaseBuilder(this, CardsDatabase.class, db_name)
-                .allowMainThreadQueries()
-                .createFromAsset("databases/" + db_name)
-                .build();
+        db = App.getDB(this);
 
         ShowCritsOnListView();
 

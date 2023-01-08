@@ -1,7 +1,5 @@
 package com.mrdelicious.minitankswot.rules.abilities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,20 +7,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.CustomSpinner;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.SpinnerAdapter;
-import com.mrdelicious.minitankswot.rules.RulesDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AbilitiesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    RulesDatabase db;
+    EverythingDatabase db;
     ListView lvAbilities;
     ArrayAdapter<String> abilitiesArrayAdapter;
-    String db_name = "db_rules.db";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,7 @@ public class AbilitiesActivity extends AppCompatActivity implements AdapterView.
         this.setTitle("Cechy pojazdów");
         lvAbilities = findViewById(R.id.abilities_list);
 
-        db = Room.databaseBuilder(this, RulesDatabase.class, db_name)
-                .allowMainThreadQueries()
-                .createFromAsset("databases/" + db_name)
-                .build();
+        db = App.getDB(this);
 
         showAbilitiesOnListView(2);
         fillFilters();

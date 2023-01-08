@@ -1,7 +1,5 @@
 package com.mrdelicious.minitankswot.tanks;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,19 +7,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.CustomSpinner;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.SpinnerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TanksActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    TankDatabase db;
+    EverythingDatabase db;
     ListView lvTanks;
     ArrayAdapter<String> tankArrayAdapter;
-    String db_name = "db_tanks.db";
     String nation = "";
     String type = "";
     int tier = 0;
@@ -34,10 +37,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         lvTanks = findViewById(R.id.tanks_tankList);
         this.setTitle("Lista Czołgów");
 
-        db = Room.databaseBuilder(this, TankDatabase.class, db_name)
-                .allowMainThreadQueries()
-                .createFromAsset("databases/" + db_name)
-                .build();
+        db = App.getDB(this);
 
         fillFilters();
 

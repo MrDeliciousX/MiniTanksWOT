@@ -1,17 +1,18 @@
 package com.mrdelicious.minitankswot.rules.terrains;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mrdelicious.minitankswot.App;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
-import com.mrdelicious.minitankswot.rules.RulesDatabase;
 
 public class TerrainProfileActivity extends AppCompatActivity {
 
-    RulesDatabase db;
-    String db_name = "db_rules.db";
+    EverythingDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,7 @@ public class TerrainProfileActivity extends AppCompatActivity {
         String name = clicked.getString("name");
         this.setTitle(name);
 
-        db = Room.databaseBuilder(this, RulesDatabase.class, db_name)
-                .allowMainThreadQueries()
-                .createFromAsset("databases/" + db_name)
-                .build();
+        db = App.getDB(this);
 
         TextView title = findViewById(R.id.terrainProfile_name);
         title.setText(name);

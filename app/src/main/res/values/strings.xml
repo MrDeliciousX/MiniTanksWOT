@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MiniWoT</string>
-    <string name="button_menu_rosters">Dywizje Pancerne</string>
+    <string name="button_menu_rosters">Plutony Pancerne</string>
     <string name="button_menu_simulate" tools:ignore="Typos">Symulacja 1vs1</string>
     <string name="button_menu_tanks">Lista Czołgów</string>
     <string name="button_menu_game">Rozgrywka</string>
@@ -58,7 +58,7 @@
     <string name="unofficials">Nieoficjalne</string>
     <string name="all">Wszystkie</string>
     <string name="filter">Filtr</string>
-    <string name="AbilityName">Nazwa cechy</string>
+    <string name="abilityName">Nazwa cechy</string>
     <string name="terrainName">nazwa terenu</string>
     <string name="stationary">Nieruchomy</string>
     <string name="japan">Japonia</string>
@@ -66,5 +66,8 @@
     <string name="whats_new">Co nowego?</string>
     <string name="dontShowAgain">Nie pokazuj ponownie</string>
     <string name="appVersion">Version 2.1.0</string>
+    <string name="name">Nazwa</string>
+    <string name="ptsLimit">Limit punktów</string>
+    <string name="next">Dalej</string>
 
 </resources>
