@@ -70,5 +70,9 @@
     <string name="ptsLimit">Limit punktów</string>
     <string name="next">Dalej</string>
     <string name="upgrades">Ulepszenia czołgów</string>
+    <string name="lightTanks">Czołgi Lekkie</string>
+    <string name="mediumTanks">Czołgi Średnie</string>
+    <string name="heavyTanks">Czołgi Ciężkie</string>
+    <string name="destroyers">Niszczyciele</string>
 
 </resources>

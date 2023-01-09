@@ -15,6 +15,7 @@
         android:id="@+id/tvFilterSpinner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:text="@string/lack"
         android:textAlignment="center"
         android:textAllCaps="false"
