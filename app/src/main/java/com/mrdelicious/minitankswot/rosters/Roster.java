@@ -8,10 +8,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "rosters")
 public class Roster {
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
     @NonNull
     public String name;
     @ColumnInfo(name = "limit_pts")
+    @NonNull
     public int limitPts;
 
     @Override

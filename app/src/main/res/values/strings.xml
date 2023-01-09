@@ -69,5 +69,6 @@
     <string name="name">Nazwa</string>
     <string name="ptsLimit">Limit punktów</string>
     <string name="next">Dalej</string>
+    <string name="upgrades">Ulepszenia czołgów</string>
 
 </resources>

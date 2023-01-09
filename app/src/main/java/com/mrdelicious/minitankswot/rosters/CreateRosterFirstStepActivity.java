@@ -34,15 +34,22 @@ public class CreateRosterFirstStepActivity extends AppCompatActivity {
         editText = findViewById(R.id.CreateRosterFirstStep_ptsLimit);
         String pts = editText.getText().toString();
         if (!name.equals("")) {
-            if (!pts.equals("")) {
-                Roster roster = new Roster();
-                roster.name = name;
-                roster.limitPts = Integer.parseInt(pts);
-                db.rosterDao().insertNew(roster);
-                Log.i(TAG, "roster: " + roster);
-                startActivity(intent);
+
+            if (db.rosterDao().findByName(name) == null) {
+
+                if (!pts.equals("") && Integer.parseInt(pts) >= 0) {
+                    Roster roster = new Roster();
+                    roster.name = name;
+                    roster.limitPts = Integer.parseInt(pts);
+                    long id = db.rosterDao().insertNew(roster);
+                    Log.i(TAG, "roster: " + roster);
+                    Log.i(TAG, String.valueOf(id));
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(this, "Błąd limitu punktów", Toast.LENGTH_SHORT).show();
             } else
-                Toast.makeText(this, "Brak punktów", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Nazwa już użyta", Toast.LENGTH_SHORT).show();
         } else
             Toast.makeText(this, "Brak nazwy", Toast.LENGTH_SHORT).show();
     }

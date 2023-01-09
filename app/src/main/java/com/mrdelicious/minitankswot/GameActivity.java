@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mrdelicious.minitankswot.cards.crits.CriticalHitActivity;
+import com.mrdelicious.minitankswot.cards.upgrades.UpgradesActivity;
 import com.mrdelicious.minitankswot.rules.abilities.AbilitiesActivity;
 import com.mrdelicious.minitankswot.rules.terrains.TerrainsActivity;
 
@@ -28,6 +29,10 @@ public class GameActivity extends AppCompatActivity {
     }
     public void showTerrains(View view) {
         Intent intent = new Intent(this, TerrainsActivity.class);
+        startActivity(intent);
+    }
+    public void showUpgrades(View view) {
+        Intent intent = new Intent(this, UpgradesActivity.class);
         startActivity(intent);
     }
 }
