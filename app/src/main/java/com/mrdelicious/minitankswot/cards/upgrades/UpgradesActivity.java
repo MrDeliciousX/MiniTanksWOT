@@ -1,8 +1,8 @@
 package com.mrdelicious.minitankswot.cards.upgrades;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mrdelicious.minitankswot.R;
 

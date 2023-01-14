@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/addTankLayout_nation"
+        android:layout_width="11dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/ic_android_black_24dp" />
+
+    <TextView
+        android:id="@+id/addTankLayout_name"
+        android:layout_width="197dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/tank"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/addTankLayout_pts"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/lack"
+        android:textAlignment="textEnd" />
+
+    <ImageButton
+        android:id="@+id/addTankLayout_addButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@color/ic_launcher_background"
+        android:contentDescription="@string/addNew"
+        android:onClick="addLTs"
+        app:srcCompat="@drawable/ic_add" />
+</LinearLayout>

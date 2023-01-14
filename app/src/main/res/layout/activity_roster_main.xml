@@ -44,6 +44,7 @@
             android:layout_weight="1"
             android:backgroundTint="#939393"
             android:contentDescription="@string/addNew"
+            android:onClick="addSPGs"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
@@ -87,6 +88,7 @@
             android:layout_weight="1"
             android:backgroundTint="#939393"
             android:contentDescription="@string/addNew"
+            android:onClick="addTDs"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
@@ -130,6 +132,7 @@
             android:layout_weight="1"
             android:backgroundTint="#939393"
             android:contentDescription="@string/addNew"
+            android:onClick="addHTs"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
@@ -173,6 +176,7 @@
             android:layout_weight="1"
             android:backgroundTint="#939393"
             android:contentDescription="@string/addNew"
+            android:onClick="addMTs"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
@@ -216,6 +220,7 @@
             android:layout_weight="1"
             android:backgroundTint="#939393"
             android:contentDescription="@string/addNew"
+            android:onClick="addLTs"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="ImageContrastCheck" />
 

@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
-import com.mrdelicious.minitankswot.tanks.TankProfileActivity;
-import com.mrdelicious.minitankswot.tanks.TanksActivity;
 
 import java.util.List;
 
