@@ -2,6 +2,7 @@ package com.mrdelicious.minitankswot;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
+
 import com.mrdelicious.minitankswot.cards.crits.Crit;
 import com.mrdelicious.minitankswot.cards.crits.CritDao;
 import com.mrdelicious.minitankswot.rosters.Roster;

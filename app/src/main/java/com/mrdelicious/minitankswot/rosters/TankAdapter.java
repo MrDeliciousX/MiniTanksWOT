@@ -5,18 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.mrdelicious.minitankswot.R;
 
 import java.util.List;
-import java.util.Locale;
 
 public class TankAdapter extends ArrayAdapter<TankOnList> {
 
@@ -42,6 +39,6 @@ public class TankAdapter extends ArrayAdapter<TankOnList> {
         cost.setText(tank.cost);
         nation.setImageResource(tank.nation);
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 }
