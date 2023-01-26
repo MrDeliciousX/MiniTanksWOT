@@ -4,13 +4,13 @@ plugins {
 
 android {
     namespace 'com.mrdelicious.minitankswot'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.mrdelicious.minitankswot"
         minSdk 26
         targetSdk 33
-        versionCode 7
+        versionCode 9
         versionName "2.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
