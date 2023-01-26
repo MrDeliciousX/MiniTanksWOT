@@ -7,7 +7,7 @@
     tools:context=".rosters.AddTanksActivity">
 
     <ListView
-        android:id="@+id/addTanks_list"
+        android:id="@+id/addTanks_tankList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
