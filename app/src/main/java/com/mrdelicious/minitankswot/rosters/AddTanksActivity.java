@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
-
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
 public class AddTanksActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -21,9 +18,8 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
     Long rosterID;
     ListView tankList;
     String type;
-    List<String> findTanks;
+    List<String> findTanks, nations;
     List<Integer> costs;
-    List<String> nations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +59,12 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
     void showTanksOnList () {
         ArrayList<TankOnList> tanks = new ArrayList<>();
         for (int i = 0; i < findTanks.size(); i++) {
-            TankOnList tank = new TankOnList(findTanks.get(i),costs.get(i),imageFill(nations.get(i)));
+            TankOnList tank = new TankOnList(findTanks.get(i), costs.get(i), imageFill(nations.get(i)));
             tanks.add(tank);
         }
+        Collections.sort(tanks);
 
-        TankAdapter tankAdapter = new TankAdapter(AddTanksActivity.this, tanks);
+        TankAdapter tankAdapter = new TankAdapter(AddTanksActivity.this, tanks, rosterID);
         tankList.setAdapter(tankAdapter);
     }
 
