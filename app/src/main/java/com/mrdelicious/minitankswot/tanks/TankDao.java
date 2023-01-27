@@ -24,4 +24,7 @@ public interface TankDao {
 
     @Query("SELECT nation FROM tanks WHERE type = :type")
     List<String> findNationsByType(String type);
+
+    @Query("SELECT * FROM tanks WHERE id = :id")
+    Tank findByID(int id);
 }

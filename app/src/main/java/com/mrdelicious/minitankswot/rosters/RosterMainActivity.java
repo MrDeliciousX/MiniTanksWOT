@@ -3,17 +3,24 @@ package com.mrdelicious.minitankswot.rosters;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.tanks.Tank;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class RosterMainActivity extends AppCompatActivity {
 
     EverythingDatabase db;
     long id;
+    List<TanksInRosters> findTanks;
+    ListView lt, mt, ht, td, spg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,43 @@ public class RosterMainActivity extends AppCompatActivity {
 
         this.setTitle(roster.name);
 
+        lt = findViewById(R.id.rosterMain_ltList);
+        mt = findViewById(R.id.rosterMain_mtList);
+        ht = findViewById(R.id.rosterMain_htList);
+        td = findViewById(R.id.rosterMain_tdList);
+        spg = findViewById(R.id.rosterMain_spgList);
+
+        showTanksOnList("light",lt);
+        showTanksOnList("medium",mt);
+        showTanksOnList("heavy",ht);
+        showTanksOnList("destroyer",td);
+        showTanksOnList("spg",spg);
+
+    }
+
+    void showTanksOnList (String type, ListView tankList) {
+        findTanks = db.tanksInRostersDao().findByRosterID(id);
+        ArrayList<TankOnList> tanks = new ArrayList<>();
+        for (int i = 0; i < findTanks.size(); i++) {
+            Tank t = db.tankDao().findByID(findTanks.get(i).tankID);
+            if (t.type.equals(type)) {
+                TankOnList tank = new TankOnList(t.tankName, t.tankCost, imageFill(t.nation));
+                tanks.add(tank);
+            }
+        }
+        Collections.sort(tanks);
+
+        TankAdapter tankAdapter = new TankAdapter(RosterMainActivity.this, tanks, id);
+        tankList.setAdapter(tankAdapter);
+    }
+
+    int imageFill(String nation){
+        StringBuilder nameHelper = new StringBuilder();
+        nameHelper.append("flag_");
+        for (int i = 0; i < nation.length(); i++) {
+            nameHelper.append(nation.charAt(i));
+        }
+        return getResources().getIdentifier(nameHelper.toString(), "drawable", getPackageName());
     }
 
     public void addLTs(View view) {

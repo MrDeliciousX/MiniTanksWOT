@@ -11,8 +11,8 @@ public interface TanksInRostersDao {
     @Query("SELECT * FROM tanksInRosters")
     List<TanksInRosters> getAll();
 
-    @Query("SELECT * FROM tanksInRosters WHERE id = :id")
-    TanksInRosters findByID(long id);
+    @Query("SELECT * FROM tanksInRosters WHERE roster_id = :id")
+    List<TanksInRosters> findByRosterID(long id);
 
     @Insert
     long insertNew(TanksInRosters tanksInRosters);
