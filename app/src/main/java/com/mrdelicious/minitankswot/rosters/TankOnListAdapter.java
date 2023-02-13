@@ -7,19 +7,32 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mrdelicious.minitankswot.App;
+import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.tanks.Tank;
+
 import java.util.List;
 
 public class TankOnListAdapter extends RecyclerView.Adapter<TankOnListAdapter.TankOnListViewHolder> {
     List<TankOnList> tankList;
+    EverythingDatabase db;
+    long rosterID;
+    boolean add;
     Context context;
 
-    public TankOnListAdapter(List<TankOnList> tankList, Context context) {
+    public TankOnListAdapter(List<TankOnList> tankList, Context context, boolean add, long rosterID) {
         this.tankList = tankList;
         this.context = context;
+        this.add = add;
+        this.rosterID = rosterID;
+        db = App.getDB(context);
     }
 
     @NonNull
@@ -35,6 +48,17 @@ public class TankOnListAdapter extends RecyclerView.Adapter<TankOnListAdapter.Ta
         holder.tankPts.setText(String.valueOf(tankList.get(position).getPts()) + "pkt");
         holder.tankFlag.setImageResource(tankList.get(position).getNation());
         holder.tankImage.setImageResource(tankList.get(position).getImage());
+        if(add) {
+            holder.tankAddBtn.setOnClickListener(view -> {
+                Tank tankToRoster = db.tankDao().findByName(tankList.get(position).getName());
+                TanksInRosters tanksInRosters = new TanksInRosters();
+                tanksInRosters.tankID = tankToRoster.id;
+                tanksInRosters.rosterID = rosterID;
+                db.tanksInRostersDao().insertNew(tanksInRosters);
+                Toast.makeText(context, "dodano " + tankList.get(position).getName(), Toast.LENGTH_SHORT).show();
+            });
+        } else
+            holder.tankAddBtn.setVisibility(View.INVISIBLE);
     }
 
     @Override

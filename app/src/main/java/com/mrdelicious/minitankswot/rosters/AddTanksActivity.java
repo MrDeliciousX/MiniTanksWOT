@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,15 +69,16 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
         TankOnList tank;
         for (int i = 0; i < findTanks.size(); i++) {
             tank = new TankOnList(findTanks.get(i), flagFill(nations.get(i)), costs.get(i), tankImageFill(findTanks.get(i)));
+            tankOnList.add(tank);
         }
-
+        tankOnList.sort(TankOnList.TanksPtsComparator);
 
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        tankAdapter = new TankOnListAdapter(tankOnList, AddTanksActivity.this);
+        tankAdapter = new TankOnListAdapter(tankOnList, AddTanksActivity.this, true, rosterID);
         recyclerView.setAdapter(tankAdapter);
     }
 

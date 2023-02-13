@@ -3,7 +3,6 @@ package com.mrdelicious.minitankswot.rosters;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,14 +13,13 @@ import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.tanks.Tank;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 public class RosterMainActivity extends AppCompatActivity {
 
     EverythingDatabase db;
-    long id;
+    long rosterID;
     List<TanksInRosters> findTanks;
     RecyclerView lt, mt, ht, td, spg;
     RecyclerView.Adapter listAdapter;
@@ -35,8 +33,8 @@ public class RosterMainActivity extends AppCompatActivity {
         db = App.getDB(this);
 
         Bundle clicked = getIntent().getExtras();
-        id = clicked.getLong("id");
-        Roster roster = db.rosterDao().findByID(id);
+        rosterID = clicked.getLong("id");
+        Roster roster = db.rosterDao().findByID(rosterID);
 
         this.setTitle(roster.name);
 
@@ -59,10 +57,12 @@ public class RosterMainActivity extends AppCompatActivity {
         TextView htCost = findViewById(R.id.rosterMain_htPts);
         TextView tdCost = findViewById(R.id.rosterMain_tdPts);
         TextView spgCost = findViewById(R.id.rosterMain_spgPts);
+
+
     }
 
     void showTanksOnList (String type, RecyclerView tankList) {
-        findTanks = db.tanksInRostersDao().findByRosterID(id);
+        findTanks = db.tanksInRostersDao().findByRosterID(rosterID);
         List<TankOnList> tanks = new ArrayList<>();
         for (int i = 0; i < findTanks.size(); i++) {
             Tank t = db.tankDao().findByID(findTanks.get(i).tankID);
@@ -71,13 +71,14 @@ public class RosterMainActivity extends AppCompatActivity {
                 tanks.add(tank);
             }
         }
+        tanks.sort(TankOnList.TanksPtsComparator);
 
         tankList.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         tankList.setLayoutManager(layoutManager);
 
-        listAdapter = new TankOnListAdapter(tanks, RosterMainActivity.this);
+        listAdapter = new TankOnListAdapter(tanks, RosterMainActivity.this, false, rosterID);
         tankList.setAdapter(listAdapter);
     }
 
@@ -125,7 +126,7 @@ public class RosterMainActivity extends AppCompatActivity {
     void openAddTanks(String type) {
         Intent intent = new Intent(RosterMainActivity.this, AddTanksActivity.class);
         intent.putExtra("type",type);
-        intent.putExtra("rosterID", id);
+        intent.putExtra("rosterID", rosterID);
         startActivity(intent);
     }
 }
