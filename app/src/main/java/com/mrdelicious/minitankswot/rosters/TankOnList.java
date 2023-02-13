@@ -1,34 +1,59 @@
 package com.mrdelicious.minitankswot.rosters;
 
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.Comparator;
 
-public class TankOnList extends AppCompatActivity implements Comparable<TankOnList>{
+public class TankOnList {
     String name;
-    int cost_int;
-    String cost;
-    int nation;
+    int pts, nation, image;
 
-    public TankOnList(String name, int cost, int nation) {
+    public TankOnList(String name, int nation, int pts, int image) {
         this.name = name;
-        this.cost_int = cost;
-        this.cost = cost + "pkt";
         this.nation = nation;
+        this.pts = pts;
+        this.image = image;
     }
 
-    public int getCostInt() {
-        return cost_int;
+    public static Comparator<TankOnList> TanksPtsComparator = Comparator.comparingInt(TankOnList::getPts);
+
+    @Override
+    public String toString() {
+        return "TankOnList{" +
+                "name='" + name + '\'' +
+                ", pts=" + pts +
+                ", nation=" + nation +
+                ", image=" + image +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
     }
 
     public int getNation() {
         return nation;
     }
 
-    @Override
-    public int compareTo(TankOnList t) {
-        return cost_int <t.getCostInt()?-1:cost_int> t.getCostInt()?1:doSecondaryOrderSort(t);
+    public void setNation(int nation) {
+        this.nation = nation;
     }
 
-    public int doSecondaryOrderSort(TankOnList t) {
-        return Integer.compare(nation, t.getNation());
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 }

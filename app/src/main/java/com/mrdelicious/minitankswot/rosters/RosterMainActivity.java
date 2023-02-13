@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mrdelicious.minitankswot.App;
@@ -15,6 +16,7 @@ import com.mrdelicious.minitankswot.tanks.Tank;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class RosterMainActivity extends AppCompatActivity {
 
@@ -22,6 +24,8 @@ public class RosterMainActivity extends AppCompatActivity {
     long id;
     List<TanksInRosters> findTanks;
     RecyclerView lt, mt, ht, td, spg;
+    RecyclerView.Adapter listAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,26 +63,42 @@ public class RosterMainActivity extends AppCompatActivity {
 
     void showTanksOnList (String type, RecyclerView tankList) {
         findTanks = db.tanksInRostersDao().findByRosterID(id);
-        ArrayList<TankOnList> tanks = new ArrayList<>();
+        List<TankOnList> tanks = new ArrayList<>();
         for (int i = 0; i < findTanks.size(); i++) {
             Tank t = db.tankDao().findByID(findTanks.get(i).tankID);
             if (t.type.equals(type)) {
-                TankOnList tank = new TankOnList(t.tankName, t.tankCost, imageFill(t.nation));
+                TankOnList tank = new TankOnList(t.tankName, flagFill(t.nation), t.tankCost, tankImageFill(t.tankName));
                 tanks.add(tank);
             }
         }
-        Collections.sort(tanks);
 
-        TankAdapter tankAdapter = new TankAdapter(RosterMainActivity.this, tanks, id, false);
-        //tankList.setAdapter(tankAdapter);
+        tankList.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        tankList.setLayoutManager(layoutManager);
+
+        listAdapter = new TankOnListAdapter(tanks, RosterMainActivity.this);
+        tankList.setAdapter(listAdapter);
     }
 
-    int imageFill(String nation){
+    int flagFill(String nation){
         StringBuilder nameHelper = new StringBuilder();
         nameHelper.append("flag_");
         for (int i = 0; i < nation.length(); i++) {
             nameHelper.append(nation.charAt(i));
         }
+        return getResources().getIdentifier(nameHelper.toString(), "drawable", getPackageName());
+    }
+
+    int tankImageFill(String name){
+        StringBuilder nameHelper = new StringBuilder();
+        nameHelper.append("tank_");
+        for (int i = 0; i < name.length(); i++) {
+            if(name.charAt(i)==' ' || name.charAt(i)=='-' || name.charAt(i)=='(' || name.charAt(i)==')' || name.charAt(i)=='.'){
+                nameHelper.append('_');
+            } else nameHelper.append(name.charAt(i));
+        }
+        nameHelper = new StringBuilder(nameHelper.toString().toLowerCase(Locale.ROOT));
         return getResources().getIdentifier(nameHelper.toString(), "drawable", getPackageName());
     }
 

@@ -51,7 +51,7 @@ public class TankAdapter extends ArrayAdapter<TankOnList> {
         ImageButton addButton = convertView.findViewById(R.id.addTankLayout_addButton);
 
         name.setText(tank.name);
-        cost.setText(tank.cost);
+        cost.setText(tank.pts);
         nation.setImageResource(tank.nation);
 
         if (add) {
