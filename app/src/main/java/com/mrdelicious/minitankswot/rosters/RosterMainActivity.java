@@ -22,6 +22,7 @@ public class RosterMainActivity extends AppCompatActivity {
     long rosterID;
     List<TanksInRosters> findTanks;
     RecyclerView lt, mt, ht, td, spg;
+    TextView ltCost, mtCost, htCost, tdCost, spgCost;
     RecyclerView.Adapter listAdapter;
     RecyclerView.LayoutManager layoutManager;
 
@@ -43,32 +44,29 @@ public class RosterMainActivity extends AppCompatActivity {
         ht = findViewById(R.id.rosterMain_htList);
         td = findViewById(R.id.rosterMain_tdList);
         spg = findViewById(R.id.rosterMain_spgList);
+        ltCost = findViewById(R.id.rosterMain_ltPts);
+        mtCost = findViewById(R.id.rosterMain_mtPts);
+        htCost = findViewById(R.id.rosterMain_htPts);
+        tdCost = findViewById(R.id.rosterMain_tdPts);
+        spgCost = findViewById(R.id.rosterMain_spgPts);
 
-        showTanksOnList("light",lt);
-        showTanksOnList("medium",mt);
-        showTanksOnList("heavy",ht);
-        showTanksOnList("destroyer",td);
-        showTanksOnList("spg",spg);
+        showTanksOnList("light",lt, ltCost);
+        showTanksOnList("medium",mt, mtCost);
+        showTanksOnList("heavy",ht, htCost);
+        showTanksOnList("destroyer",td, tdCost);
+        showTanksOnList("spg",spg, spgCost);
     }
 
-    void setCosts () {
-        TextView ltCost = findViewById(R.id.rosterMain_ltPts);
-        TextView mtCost = findViewById(R.id.rosterMain_mtPts);
-        TextView htCost = findViewById(R.id.rosterMain_htPts);
-        TextView tdCost = findViewById(R.id.rosterMain_tdPts);
-        TextView spgCost = findViewById(R.id.rosterMain_spgPts);
-
-
-    }
-
-    void showTanksOnList (String type, RecyclerView tankList) {
+    void showTanksOnList (String type, RecyclerView tankList, TextView pts) {
         findTanks = db.tanksInRostersDao().findByRosterID(rosterID);
+        int ptsSum = 0;
         List<TankOnList> tanks = new ArrayList<>();
         for (int i = 0; i < findTanks.size(); i++) {
             Tank t = db.tankDao().findByID(findTanks.get(i).tankID);
             if (t.type.equals(type)) {
                 TankOnList tank = new TankOnList(t.tankName, flagFill(t.nation), t.tankCost, tankImageFill(t.tankName));
                 tanks.add(tank);
+                ptsSum += t.tankCost;
             }
         }
         tanks.sort(TankOnList.TanksPtsComparator);
@@ -80,6 +78,8 @@ public class RosterMainActivity extends AppCompatActivity {
 
         listAdapter = new TankOnListAdapter(tanks, RosterMainActivity.this, false, rosterID);
         tankList.setAdapter(listAdapter);
+
+        pts.setText(ptsSum + "pkt");
     }
 
     int flagFill(String nation){
