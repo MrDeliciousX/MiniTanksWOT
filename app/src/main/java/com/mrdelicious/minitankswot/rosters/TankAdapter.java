@@ -25,11 +25,13 @@ public class TankAdapter extends ArrayAdapter<TankOnList> {
     EverythingDatabase db;
     Context context;
     long rosterID;
+    boolean add;
 
-    public TankAdapter(Context context, List<TankOnList> tankOnLists, long id) {
+    public TankAdapter(Context context, List<TankOnList> tankOnLists, long id, boolean add) {
         super(context, R.layout.add_tank_item_layout, tankOnLists);
         this.context = context;
         this.rosterID = id;
+        this.add = add;
     }
 
     @NonNull
@@ -52,14 +54,17 @@ public class TankAdapter extends ArrayAdapter<TankOnList> {
         cost.setText(tank.cost);
         nation.setImageResource(tank.nation);
 
-        addButton.setOnClickListener(view -> {
-            Tank tankToRoster = db.tankDao().findByName(tank.name);
-            TanksInRosters tanksInRosters = new TanksInRosters();
-            tanksInRosters.tankID = tankToRoster.id;
-            tanksInRosters.rosterID = rosterID;
-            db.tanksInRostersDao().insertNew(tanksInRosters);
-            Toast.makeText(context, "dodano " + tank.name, Toast.LENGTH_SHORT).show();
-        });
+        if (add) {
+            addButton.setOnClickListener(view -> {
+                Tank tankToRoster = db.tankDao().findByName(tank.name);
+                TanksInRosters tanksInRosters = new TanksInRosters();
+                tanksInRosters.tankID = tankToRoster.id;
+                tanksInRosters.rosterID = rosterID;
+                db.tanksInRostersDao().insertNew(tanksInRosters);
+                Toast.makeText(context, "dodano " + tank.name, Toast.LENGTH_SHORT).show();
+            });
+        } else
+            addButton.setVisibility(View.INVISIBLE);
 
         return convertView;
     }

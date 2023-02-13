@@ -64,7 +64,7 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
         }
         Collections.sort(tanks);
 
-        TankAdapter tankAdapter = new TankAdapter(AddTanksActivity.this, tanks, rosterID);
+        TankAdapter tankAdapter = new TankAdapter(AddTanksActivity.this, tanks, rosterID,true);
         tankList.setAdapter(tankAdapter);
     }
 

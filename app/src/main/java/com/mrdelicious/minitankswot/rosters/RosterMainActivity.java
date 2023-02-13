@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.tanks.Tank;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +21,7 @@ public class RosterMainActivity extends AppCompatActivity {
     EverythingDatabase db;
     long id;
     List<TanksInRosters> findTanks;
-    ListView lt, mt, ht, td, spg;
+    RecyclerView lt, mt, ht, td, spg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,17 @@ public class RosterMainActivity extends AppCompatActivity {
         showTanksOnList("heavy",ht);
         showTanksOnList("destroyer",td);
         showTanksOnList("spg",spg);
-
     }
 
-    void showTanksOnList (String type, ListView tankList) {
+    void setCosts () {
+        TextView ltCost = findViewById(R.id.rosterMain_ltPts);
+        TextView mtCost = findViewById(R.id.rosterMain_mtPts);
+        TextView htCost = findViewById(R.id.rosterMain_htPts);
+        TextView tdCost = findViewById(R.id.rosterMain_tdPts);
+        TextView spgCost = findViewById(R.id.rosterMain_spgPts);
+    }
+
+    void showTanksOnList (String type, RecyclerView tankList) {
         findTanks = db.tanksInRostersDao().findByRosterID(id);
         ArrayList<TankOnList> tanks = new ArrayList<>();
         for (int i = 0; i < findTanks.size(); i++) {
@@ -61,8 +69,8 @@ public class RosterMainActivity extends AppCompatActivity {
         }
         Collections.sort(tanks);
 
-        TankAdapter tankAdapter = new TankAdapter(RosterMainActivity.this, tanks, id);
-        tankList.setAdapter(tankAdapter);
+        TankAdapter tankAdapter = new TankAdapter(RosterMainActivity.this, tanks, id, false);
+        //tankList.setAdapter(tankAdapter);
     }
 
     int imageFill(String nation){
