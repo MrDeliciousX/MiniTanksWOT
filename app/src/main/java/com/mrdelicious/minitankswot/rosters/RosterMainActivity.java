@@ -2,8 +2,13 @@ package com.mrdelicious.minitankswot.rosters;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,13 +18,16 @@ import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.tanks.Tank;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 public class RosterMainActivity extends AppCompatActivity {
 
     EverythingDatabase db;
+    Intent intent;
     long rosterID;
+    Roster roster;
     List<TanksInRosters> findTanks;
     RecyclerView lt, mt, ht, td, spg;
     TextView ltCost, mtCost, htCost, tdCost, spgCost;
@@ -35,10 +43,61 @@ public class RosterMainActivity extends AppCompatActivity {
 
         Bundle clicked = getIntent().getExtras();
         rosterID = clicked.getLong("id");
-        Roster roster = db.rosterDao().findByID(rosterID);
+        roster = db.rosterDao().findByID(rosterID);
 
         this.setTitle(roster.name);
 
+        przypisywanie();
+
+        showTanksOnList("light",lt, ltCost);
+        showTanksOnList("medium",mt, mtCost);
+        showTanksOnList("heavy",ht, htCost);
+        showTanksOnList("destroyer",td, tdCost);
+        showTanksOnList("spg",spg, spgCost);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.roster_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuRoster_delete:
+                wyczyszczenieCzolgow();
+                db.rosterDao().delete(roster);
+                intent = new Intent(RosterMainActivity.this, RostersActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.menuRoster_clean:
+                wyczyszczenieCzolgow();
+                showTanksOnList("light",lt, ltCost);
+                showTanksOnList("medium",mt, mtCost);
+                showTanksOnList("heavy",ht, htCost);
+                showTanksOnList("destroyer",td, tdCost);
+                showTanksOnList("spg",spg, spgCost);
+                break;
+            case R.id.menuRoster_settings:
+                intent = new Intent(RosterMainActivity.this, RosterSettingsActivity.class);
+                intent.putExtra("rosterID", rosterID);
+                startActivity(intent);
+                break;
+        }
+            return true;
+    }
+
+    void wyczyszczenieCzolgow() {
+        List<TanksInRosters> allTanks = db.tanksInRostersDao().getAll();
+        for (int i = 0; i < allTanks.size(); i++) {
+            if (allTanks.get(i).rosterID == rosterID)
+                db.tanksInRostersDao().delete(allTanks.get(i));
+        }
+    }
+
+    void przypisywanie() {
         lt = findViewById(R.id.rosterMain_ltList);
         mt = findViewById(R.id.rosterMain_mtList);
         ht = findViewById(R.id.rosterMain_htList);
@@ -49,12 +108,6 @@ public class RosterMainActivity extends AppCompatActivity {
         htCost = findViewById(R.id.rosterMain_htPts);
         tdCost = findViewById(R.id.rosterMain_tdPts);
         spgCost = findViewById(R.id.rosterMain_spgPts);
-
-        showTanksOnList("light",lt, ltCost);
-        showTanksOnList("medium",mt, mtCost);
-        showTanksOnList("heavy",ht, htCost);
-        showTanksOnList("destroyer",td, tdCost);
-        showTanksOnList("spg",spg, spgCost);
     }
 
     void showTanksOnList (String type, RecyclerView tankList, TextView pts) {

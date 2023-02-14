@@ -41,6 +41,9 @@ public class CreateRosterFirstStepActivity extends AppCompatActivity {
                     Roster roster = new Roster();
                     roster.name = name;
                     roster.limitPts = Integer.parseInt(pts);
+                    roster.currentPts = 0;
+                    roster.tiers = "1111111111";
+                    roster.official = 0;
                     long id = db.rosterDao().insertNew(roster);
                     Log.i(TAG, "roster: " + roster);
                     Log.i(TAG, String.valueOf(id));

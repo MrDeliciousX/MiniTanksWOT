@@ -14,6 +14,14 @@ public class Roster {
     @ColumnInfo(name = "limit_pts")
     @NonNull
     public int limitPts;
+    @ColumnInfo(name = "current_pts")
+    @NonNull
+    public int currentPts;
+
+    public String nation;
+    public String tiers;
+    @NonNull
+    public int official;
 
     @Override
     public String toString() {
@@ -21,6 +29,10 @@ public class Roster {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", limitPts=" + limitPts +
+                ", currentPts=" + currentPts +
+                ", nation='" + nation + '\'' +
+                ", tiers='" + tiers + '\'' +
+                ", official=" + official +
                 '}';
     }
 }

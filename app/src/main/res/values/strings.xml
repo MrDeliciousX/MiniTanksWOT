@@ -65,7 +65,7 @@
     <string name="close">Zamknij</string>
     <string name="whats_new">Co nowego?</string>
     <string name="dontShowAgain">Nie pokazuj ponownie</string>
-    <string name="appVersion">Version 2.2.2</string>
+    <string name="appVersion">Version 2.2.4</string>
     <string name="name">Nazwa</string>
     <string name="ptsLimit">Limit punktów</string>
     <string name="next">Dalej</string>
@@ -74,5 +74,11 @@
     <string name="mediumTanks">Czołgi Średnie</string>
     <string name="heavyTanks">Czołgi Ciężkie</string>
     <string name="destroyers">Niszczyciele</string>
+    <string name="settings">Ustawienia</string>
+    <string name="deleteRoster">Usuń pluton</string>
+    <string name="cleanRoster">Wyczyść pluton</string>
+    <string name="rosterName">Nazwa plutonu</string>
+    <string name="tiers">Poziomy</string>
+    <string name="nations">Kraje</string>
 
 </resources>
