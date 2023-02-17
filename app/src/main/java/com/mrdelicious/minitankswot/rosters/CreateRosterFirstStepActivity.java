@@ -34,9 +34,7 @@ public class CreateRosterFirstStepActivity extends AppCompatActivity {
         editText = findViewById(R.id.CreateRosterFirstStep_ptsLimit);
         String pts = editText.getText().toString();
         if (!name.equals("")) {
-
             if (db.rosterDao().findByName(name) == null) {
-
                 if (!pts.equals("") && Integer.parseInt(pts) >= 0) {
                     Roster roster = new Roster();
                     roster.name = name;
@@ -44,6 +42,7 @@ public class CreateRosterFirstStepActivity extends AppCompatActivity {
                     roster.currentPts = 0;
                     roster.tiers = "1111111111";
                     roster.official = 0;
+                    roster.nation = "11111111111";
                     long id = db.rosterDao().insertNew(roster);
                     Log.i(TAG, "roster: " + roster);
                     Log.i(TAG, String.valueOf(id));

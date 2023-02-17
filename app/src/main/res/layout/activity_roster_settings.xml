@@ -181,6 +181,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -201,7 +202,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="usa"
-                android:cropToPadding="false"
+                android:onClick="changeUsa"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_usa" />
 
@@ -211,6 +212,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="gb"
+                android:onClick="changeGb"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_gb" />
 
@@ -220,6 +222,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="german"
+                android:onClick="changeGer"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_german" />
 
@@ -229,6 +232,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="zsrr"
+                android:onClick="changeZsrr"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_zsrr" />
         </LinearLayout>
@@ -244,6 +248,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="china"
+                android:onClick="changeChi"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_china" />
 
@@ -253,6 +258,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="czech"
+                android:onClick="changeCzech"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_czech" />
 
@@ -262,6 +268,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="fr"
+                android:onClick="changeFr"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_france" />
 
@@ -271,6 +278,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="italy"
+                android:onClick="changeItal"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_italy" />
         </LinearLayout>
@@ -286,6 +294,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="jap"
+                android:onClick="changeJap"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_japan" />
 
@@ -295,6 +304,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="pl"
+                android:onClick="changePl"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_poland" />
 
@@ -304,9 +314,21 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:contentDescription="sweden"
+                android:onClick="changeSwed"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/flag_sweden" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/rosSet_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="saveAndBack"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

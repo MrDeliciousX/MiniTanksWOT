@@ -1,10 +1,12 @@
 package com.mrdelicious.minitankswot.rosters;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.tanks.Tank;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +26,7 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
 
     EverythingDatabase db;
     Long rosterID;
+    Roster roster;
     String type;
     List<String> findTanks, nations;
     List<Integer> costs;
@@ -40,6 +45,7 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
         Bundle chosen = getIntent().getExtras();
         type = chosen.getString("type");
         rosterID = chosen.getLong("rosterID");
+        roster = db.rosterDao().findByID(rosterID);
         findTanks = db.tankDao().findNamesByType(type);
         costs = db.tankDao().findCostsByType(type);
         nations = db.tankDao().findNationsByType(type);
@@ -68,8 +74,10 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
         List<TankOnList> tankOnList = new ArrayList<>();
         TankOnList tank;
         for (int i = 0; i < findTanks.size(); i++) {
-            tank = new TankOnList(findTanks.get(i), flagFill(nations.get(i)), costs.get(i), tankImageFill(findTanks.get(i)));
-            tankOnList.add(tank);
+            if (czolgPasuje(findTanks.get(i))) {
+                tank = new TankOnList(findTanks.get(i), flagFill(nations.get(i)), costs.get(i), tankImageFill(findTanks.get(i)));
+                tankOnList.add(tank);
+            }
         }
         tankOnList.sort(TankOnList.TanksPtsComparator);
 
@@ -101,6 +109,39 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
         }
         nameHelper = new StringBuilder(nameHelper.toString().toLowerCase(Locale.ROOT));
         return getResources().getIdentifier(nameHelper.toString(), "drawable", getPackageName());
+    }
+
+    boolean czolgPasuje (String nazwaCzolgu) {
+        Tank tank = db.tankDao().findByName(nazwaCzolgu);
+        if (roster.tiers.charAt(tank.tier % 10) == '1') {
+            String nation = tank.nation;
+            switch (nation) {
+                case "gb": return czyKraj(0, tank);
+                case "usa": return czyKraj(1, tank);
+                case "german": return czyKraj(2, tank);
+                case "zsrr": return czyKraj(3, tank);
+                case "china": return czyKraj(4, tank);
+                case "japan": return czyKraj(5, tank);
+                case "france": return czyKraj(6, tank);
+                case "italy": return czyKraj(7, tank);
+                case "poland": return czyKraj(8, tank);
+                case "sweden": return czyKraj(9, tank);
+                case "czech": return czyKraj(10, tank);
+                default: return false;
+            }
+        } else return false;
+    }
+
+    boolean czyKraj(int i, Tank tank) {
+        if (roster.nation.charAt(i) == '1')
+            return roster.official != 1 || tank.isOfficial != 0;
+        else return false;
+    }
+
+    public void gotowe(View view) {
+        Intent intent = new Intent(AddTanksActivity.this, RosterMainActivity.class);
+        intent.putExtra("id", rosterID);
+        startActivity(intent);
     }
 
     @Override

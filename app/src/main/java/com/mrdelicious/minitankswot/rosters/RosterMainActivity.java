@@ -82,7 +82,7 @@ public class RosterMainActivity extends AppCompatActivity {
                 break;
             case R.id.menuRoster_settings:
                 intent = new Intent(RosterMainActivity.this, RosterSettingsActivity.class);
-                intent.putExtra("rosterID", rosterID);
+                intent.putExtra("id", rosterID);
                 startActivity(intent);
                 break;
         }
