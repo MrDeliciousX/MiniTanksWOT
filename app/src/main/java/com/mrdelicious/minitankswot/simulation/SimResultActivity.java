@@ -103,4 +103,10 @@ public class SimResultActivity extends AppCompatActivity {
 
         //trafienia krytyczne
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, SimulationActivity.class);
+        startActivity(intent);
+    }
 }

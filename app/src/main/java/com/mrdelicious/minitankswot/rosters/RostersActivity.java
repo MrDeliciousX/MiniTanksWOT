@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
+import com.mrdelicious.minitankswot.MainActivity;
 import com.mrdelicious.minitankswot.R;
 
 import java.util.List;
@@ -52,6 +53,12 @@ public class RostersActivity extends AppCompatActivity {
 
     public void createNewRoster(View view) {
         Intent intent = new Intent(this, CreateRosterFirstStepActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

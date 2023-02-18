@@ -150,4 +150,11 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {}
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, RosterMainActivity.class);
+        intent.putExtra("id", rosterID);
+        startActivity(intent);
+    }
 }

@@ -231,4 +231,11 @@ public class RosterSettingsActivity extends AppCompatActivity {
             nations[kraj] = 1;
         return nations[kraj];
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, RosterMainActivity.class);
+        intent.putExtra("id", rosterID);
+        startActivity(intent);
+    }
 }

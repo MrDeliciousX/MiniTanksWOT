@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
+import com.mrdelicious.minitankswot.GameActivity;
 import com.mrdelicious.minitankswot.R;
 
 import java.util.List;
@@ -49,6 +50,12 @@ public class CriticalHitActivity extends AppCompatActivity {
     }
     public void ShowRandomCrit(View view) {
         Intent intent = new Intent(this,RandomCritActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 }

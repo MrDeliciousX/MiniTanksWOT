@@ -55,4 +55,10 @@ public class CreateRosterFirstStepActivity extends AppCompatActivity {
         } else
             Toast.makeText(this, "Brak nazwy", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, RostersActivity.class);
+        startActivity(intent);
+    }
 }

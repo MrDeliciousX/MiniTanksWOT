@@ -182,4 +182,10 @@ public class RosterMainActivity extends AppCompatActivity {
         intent.putExtra("rosterID", rosterID);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, RostersActivity.class);
+        startActivity(intent);
+    }
 }
