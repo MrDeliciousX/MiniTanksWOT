@@ -1,5 +1,6 @@
 package com.mrdelicious.minitankswot.rosters;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,20 +67,32 @@ public class RosterMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(RosterMainActivity.this);
+        AlertDialog alert;
         switch (item.getItemId()) {
             case R.id.menuRoster_delete:
-                wyczyszczenieCzolgow();
-                db.rosterDao().delete(roster);
-                intent = new Intent(RosterMainActivity.this, RostersActivity.class);
-                startActivity(intent);
+                alertBuilder.setMessage("Czy na pewno chcesz usunąć pluton?")
+                        .setPositiveButton("Tak", (dialogInterface, i) -> {
+                            wyczyszczenieCzolgow();
+                            db.rosterDao().delete(roster);
+                            intent = new Intent(RosterMainActivity.this, RostersActivity.class);
+                            startActivity(intent);
+                        }).setNegativeButton("Anuluj", null);
+                alert = alertBuilder.create();
+                alert.show();
                 break;
             case R.id.menuRoster_clean:
-                wyczyszczenieCzolgow();
-                showTanksOnList("light",lt, ltCost);
-                showTanksOnList("medium",mt, mtCost);
-                showTanksOnList("heavy",ht, htCost);
-                showTanksOnList("destroyer",td, tdCost);
-                showTanksOnList("spg",spg, spgCost);
+                alertBuilder.setMessage("Czy na pewno chcesz usunąć wszystkie czołgi z tego plutonu?")
+                        .setPositiveButton("Tak", (dialogInterface, i) -> {
+                            wyczyszczenieCzolgow();
+                            showTanksOnList("light",lt, ltCost);
+                            showTanksOnList("medium",mt, mtCost);
+                            showTanksOnList("heavy",ht, htCost);
+                            showTanksOnList("destroyer",td, tdCost);
+                            showTanksOnList("spg",spg, spgCost);
+                        }).setNegativeButton("Anuluj", null);
+                alert = alertBuilder.create();
+                alert.show();
                 break;
             case R.id.menuRoster_settings:
                 intent = new Intent(RosterMainActivity.this, RosterSettingsActivity.class);
