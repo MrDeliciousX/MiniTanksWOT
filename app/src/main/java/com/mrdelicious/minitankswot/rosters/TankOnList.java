@@ -5,12 +5,14 @@ import java.util.Comparator;
 public class TankOnList {
     String name;
     int pts, nation, image;
+    long tankID;
 
-    public TankOnList(String name, int nation, int pts, int image) {
+    public TankOnList(String name, int nation, int pts, int image, long tankID) {
         this.name = name;
         this.nation = nation;
         this.pts = pts;
         this.image = image;
+        this.tankID = tankID;
     }
 
     public static Comparator<TankOnList> TanksPtsComparator = Comparator.comparingInt(TankOnList::getPts);
@@ -55,5 +57,13 @@ public class TankOnList {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public long getTankID() {
+        return tankID;
+    }
+
+    public void setTankID(long tankID) {
+        this.tankID = tankID;
     }
 }

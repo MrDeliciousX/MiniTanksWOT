@@ -17,8 +17,8 @@ import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.tanks.Tank;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -117,7 +117,7 @@ public class RosterMainActivity extends AppCompatActivity {
         for (int i = 0; i < findTanks.size(); i++) {
             Tank t = db.tankDao().findByID(findTanks.get(i).tankID);
             if (t.type.equals(type)) {
-                TankOnList tank = new TankOnList(t.tankName, flagFill(t.nation), t.tankCost, tankImageFill(t.tankName));
+                TankOnList tank = new TankOnList(t.tankName, flagFill(t.nation), t.tankCost, tankImageFill(t.tankName), findTanks.get(i).id);
                 tanks.add(tank);
                 ptsSum += t.tankCost;
             }

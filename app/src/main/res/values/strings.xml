@@ -82,5 +82,10 @@
     <string name="nations">Kraje</string>
     <string name="save">Zapisz</string>
     <string name="ready">Gotowe</string>
+    <string name="crew">Załoga</string>
+    <string name="modules">Moduły</string>
+    <string name="ammo">Amunicja</string>
+    <string name="consumables">Materiały eksploatacyjne</string>
+    <string name="equipment">Wyposażenie</string>
 
 </resources>

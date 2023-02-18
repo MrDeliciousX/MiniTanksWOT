@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,13 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniTanksWOT"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".rosters.TankInRosterSettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".rosters.RosterSettingsActivity"
             android:exported="false" />
         <activity
             android:name=".rosters.AddTanksActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -25,7 +28,7 @@
         <activity
             android:name=".cards.upgrades.UpgradesActivity"
             android:exported="false"
-            android:parentActivityName=".GameActivity">
+            android:parentActivityName=".GameActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -33,7 +36,7 @@
         <activity
             android:name=".rosters.RosterMainActivity"
             android:exported="false"
-            android:parentActivityName=".rosters.RostersActivity">
+            android:parentActivityName=".rosters.RostersActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -41,7 +44,7 @@
         <activity
             android:name=".rosters.CreateRosterFirstStepActivity"
             android:exported="false"
-            android:parentActivityName=".rosters.RostersActivity">
+            android:parentActivityName=".rosters.RostersActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -49,14 +52,14 @@
         <activity
             android:name=".simulation.SimResultActivity"
             android:exported="false"
-            android:parentActivityName=".simulation.SimulationActivity">
+            android:parentActivityName=".simulation.SimulationActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".WhatsNewWindowActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -64,7 +67,7 @@
         <activity
             android:name=".rules.terrains.TerrainProfileActivity"
             android:exported="false"
-            android:parentActivityName=".rules.terrains.TerrainsActivity">
+            android:parentActivityName=".rules.terrains.TerrainsActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -72,7 +75,7 @@
         <activity
             android:name=".rules.abilities.AbilityProfileActivity"
             android:exported="false"
-            android:parentActivityName=".rules.abilities.AbilitiesActivity">
+            android:parentActivityName=".rules.abilities.AbilitiesActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -80,7 +83,7 @@
         <activity
             android:name=".rules.terrains.TerrainsActivity"
             android:exported="false"
-            android:parentActivityName=".GameActivity">
+            android:parentActivityName=".GameActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -88,7 +91,7 @@
         <activity
             android:name=".rules.abilities.AbilitiesActivity"
             android:exported="false"
-            android:parentActivityName=".GameActivity">
+            android:parentActivityName=".GameActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -96,7 +99,7 @@
         <activity
             android:name=".cards.crits.RandomCritActivity"
             android:exported="false"
-            android:parentActivityName=".cards.crits.CriticalHitActivity">
+            android:parentActivityName=".cards.crits.CriticalHitActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -104,7 +107,7 @@
         <activity
             android:name=".cards.crits.CriticalHitActivity"
             android:exported="false"
-            android:parentActivityName=".GameActivity">
+            android:parentActivityName=".GameActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -112,7 +115,7 @@
         <activity
             android:name=".tanks.TankProfileActivity"
             android:exported="false"
-            android:parentActivityName=".tanks.TanksActivity">
+            android:parentActivityName=".tanks.TanksActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -120,7 +123,7 @@
         <activity
             android:name=".rosters.RostersActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -128,7 +131,7 @@
         <activity
             android:name=".simulation.SimulationActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -136,7 +139,7 @@
         <activity
             android:name=".GameActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -144,14 +147,14 @@
         <activity
             android:name=".tanks.TanksActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

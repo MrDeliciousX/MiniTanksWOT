@@ -4,21 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.tanks.Tank;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -75,7 +71,7 @@ public class AddTanksActivity extends AppCompatActivity implements AdapterView.O
         TankOnList tank;
         for (int i = 0; i < findTanks.size(); i++) {
             if (czolgPasuje(findTanks.get(i))) {
-                tank = new TankOnList(findTanks.get(i), flagFill(nations.get(i)), costs.get(i), tankImageFill(findTanks.get(i)));
+                tank = new TankOnList(findTanks.get(i), flagFill(nations.get(i)), costs.get(i), tankImageFill(findTanks.get(i)), -1);
                 tankOnList.add(tank);
             }
         }

@@ -1,6 +1,7 @@
 package com.mrdelicious.minitankswot.rosters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +9,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.tanks.Tank;
-
 import java.util.List;
 
 public class TankOnListAdapter extends RecyclerView.Adapter<TankOnListAdapter.TankOnListViewHolder> {
@@ -57,8 +55,15 @@ public class TankOnListAdapter extends RecyclerView.Adapter<TankOnListAdapter.Ta
                 db.tanksInRostersDao().insertNew(tanksInRosters);
                 Toast.makeText(context, "dodano " + tankList.get(position).getName(), Toast.LENGTH_SHORT).show();
             });
-        } else
+        } else {
             holder.tankAddBtn.setVisibility(View.INVISIBLE);
+            holder.parentLayout.setOnClickListener(view -> {
+                Intent intent = new Intent(context, TankInRosterSettingsActivity.class);
+                intent.putExtra("id", rosterID);
+                intent.putExtra("tankId", tankList.get(position).getTankID());
+                context.startActivity(intent);
+            });
+        }
     }
 
     @Override
@@ -66,7 +71,7 @@ public class TankOnListAdapter extends RecyclerView.Adapter<TankOnListAdapter.Ta
         return tankList.size();
     }
 
-    public class TankOnListViewHolder extends RecyclerView.ViewHolder  {
+    public static class TankOnListViewHolder extends RecyclerView.ViewHolder  {
         ImageView tankImage;
         ImageView tankFlag;
         TextView tankName;
