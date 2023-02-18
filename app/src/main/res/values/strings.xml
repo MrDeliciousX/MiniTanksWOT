@@ -87,5 +87,11 @@
     <string name="ammo">Amunicja</string>
     <string name="consumables">Materiały eksploatacyjne</string>
     <string name="equipment">Wyposażenie</string>
+    <string name="china">Chiny</string>
+    <string name="poland">Polska</string>
+    <string name="france">Francja</string>
+    <string name="sweden">Szwecja</string>
+    <string name="italy">Włochy</string>
+    <string name="czechoslovakia">Czechosłowacja</string>
 
 </resources>

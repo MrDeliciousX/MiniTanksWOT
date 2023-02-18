@@ -111,6 +111,12 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
         nationsList.add(new CustomSpinner(getString(R.string.cccp),R.drawable.flag_zsrr));
         nationsList.add(new CustomSpinner(getString(R.string.greatBritain),R.drawable.flag_gb));
         nationsList.add(new CustomSpinner(getString(R.string.japan),R.drawable.flag_japan));
+        nationsList.add(new CustomSpinner(getString(R.string.china),R.drawable.flag_china));
+        nationsList.add(new CustomSpinner(getString(R.string.poland),R.drawable.flag_poland));
+        nationsList.add(new CustomSpinner(getString(R.string.france),R.drawable.flag_france));
+        nationsList.add(new CustomSpinner(getString(R.string.sweden),R.drawable.flag_sweden));
+        nationsList.add(new CustomSpinner(getString(R.string.italy),R.drawable.flag_italy));
+        nationsList.add(new CustomSpinner(getString(R.string.czechoslovakia),R.drawable.flag_czech));
         SpinnerAdapter spinnerAdapterNations = new SpinnerAdapter(this,nationsList);
         if (spinnerNations != null){
             spinnerNations.setAdapter(spinnerAdapterNations);
@@ -188,6 +194,24 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
                 break;
             case "Japonia":
                 nation = "japan";
+                break;
+            case "Chiny":
+                nation = "china";
+                break;
+            case "Francja":
+                nation = "france";
+                break;
+            case "Polska":
+                nation = "poland";
+                break;
+            case "Szwecja":
+                nation = "sweden";
+                break;
+            case "Włochy":
+                nation = "italy";
+                break;
+            case "Czechosłowacja":
+                nation = "czech";
                 break;
             case "Poziom":
                 tier = 0;
