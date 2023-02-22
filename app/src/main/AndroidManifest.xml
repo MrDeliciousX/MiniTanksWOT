@@ -35,8 +35,7 @@
         </activity>
         <activity
             android:name=".rosters.RosterMainActivity"
-            android:exported="false"
-            android:parentActivityName=".rosters.RostersActivity" >
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

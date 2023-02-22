@@ -1,4 +1,4 @@
-package com.mrdelicious.minitankswot.rosters;
+package com.mrdelicious.minitankswot.rosters.listsStuff;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.rosters.TankInRosterSettingsActivity;
+import com.mrdelicious.minitankswot.rosters.databaseStuff.TanksInRosters;
 import com.mrdelicious.minitankswot.tanks.Tank;
 import java.util.List;
 

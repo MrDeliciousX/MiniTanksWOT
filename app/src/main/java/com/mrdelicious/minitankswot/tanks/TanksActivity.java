@@ -14,6 +14,7 @@ import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.CustomSpinner;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.GameActivity;
+import com.mrdelicious.minitankswot.MainActivity;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.SpinnerAdapter;
 
@@ -264,7 +265,7 @@ public class TanksActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

@@ -1,9 +1,11 @@
-package com.mrdelicious.minitankswot.rosters;
+package com.mrdelicious.minitankswot.rosters.databaseStuff;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.mrdelicious.minitankswot.rosters.databaseStuff.TanksInRosters;
 
 import java.util.List;
 

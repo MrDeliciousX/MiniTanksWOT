@@ -1,4 +1,4 @@
-package com.mrdelicious.minitankswot.rosters;
+package com.mrdelicious.minitankswot.rosters.listsStuff;
 
 import java.util.Comparator;
 

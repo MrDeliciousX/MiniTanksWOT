@@ -12,6 +12,7 @@ import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.MainActivity;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.rosters.databaseStuff.Roster;
 
 import java.util.List;
 

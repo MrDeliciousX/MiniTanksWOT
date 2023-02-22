@@ -1,4 +1,4 @@
-package com.mrdelicious.minitankswot.rosters;
+package com.mrdelicious.minitankswot.rosters.databaseStuff;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

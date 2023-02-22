@@ -1,4 +1,4 @@
-package com.mrdelicious.minitankswot.rosters;
+package com.mrdelicious.minitankswot.rosters.databaseStuff;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

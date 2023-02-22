@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.rosters.databaseStuff.Roster;
 
 public class CreateRosterFirstStepActivity extends AppCompatActivity {
 

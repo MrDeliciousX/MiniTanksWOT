@@ -10,6 +10,8 @@ import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.cards.upgrades.Upgrade;
+import com.mrdelicious.minitankswot.rosters.databaseStuff.Roster;
+import com.mrdelicious.minitankswot.rosters.databaseStuff.TanksInRosters;
 
 import java.util.List;
 
