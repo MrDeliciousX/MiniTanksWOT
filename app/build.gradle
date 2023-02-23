@@ -10,7 +10,7 @@ android {
         applicationId "com.mrdelicious.minitankswot"
         minSdk 26
         targetSdk 33
-        versionCode 19
+        versionCode 20
         versionName "2.2.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

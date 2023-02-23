@@ -2,11 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/upgradeAddLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/layoutUpgrade_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -16,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/layoutUpgrade_btn"
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:textColor="@color/black"
@@ -36,13 +37,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/layoutUpgrade_pkt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/lack"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/radioButton"
+        app:layout_constraintEnd_toStartOf="@+id/layoutUpgrade_btn"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

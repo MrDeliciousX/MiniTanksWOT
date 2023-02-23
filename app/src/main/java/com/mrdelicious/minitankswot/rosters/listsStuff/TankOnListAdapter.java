@@ -74,10 +74,8 @@ public class TankOnListAdapter extends RecyclerView.Adapter<TankOnListAdapter.Ta
     }
 
     public static class TankOnListViewHolder extends RecyclerView.ViewHolder  {
-        ImageView tankImage;
-        ImageView tankFlag;
-        TextView tankName;
-        TextView tankPts;
+        ImageView tankImage, tankFlag;
+        TextView tankName, tankPts;
         ImageButton tankAddBtn;
         ConstraintLayout parentLayout;
 
