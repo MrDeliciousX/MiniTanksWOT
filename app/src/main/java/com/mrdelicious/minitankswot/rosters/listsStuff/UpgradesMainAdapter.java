@@ -1,6 +1,7 @@
 package com.mrdelicious.minitankswot.rosters.listsStuff;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
+import com.mrdelicious.minitankswot.rosters.ChoseUpgradeActivity;
+
 import java.util.List;
 
 public class UpgradesMainAdapter extends RecyclerView.Adapter<UpgradesMainAdapter.UpgradesMainViewHolder> {
     List<UpgradesMain> upgradesList;
+    String typUlepszenia;
     EverythingDatabase db;
     Context context;
 
-    public UpgradesMainAdapter(List<UpgradesMain> upgradesList, Context context) {
+    public UpgradesMainAdapter(List<UpgradesMain> upgradesList, Context context, String typUlepszenia) {
         this.upgradesList = upgradesList;
         this.context = context;
+        this.typUlepszenia = typUlepszenia;
         db = App.getDB(context);
     }
 
@@ -36,11 +41,11 @@ public class UpgradesMainAdapter extends RecyclerView.Adapter<UpgradesMainAdapte
     public void onBindViewHolder(@NonNull UpgradesMainViewHolder holder, int position) {
         holder.name.setText(upgradesList.get(position).getName());
         holder.pts.setText(upgradesList.get(position).getPts());
-        holder.btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
+        holder.btn.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ChoseUpgradeActivity.class);
+            intent.putExtra("nazwa", upgradesList.get(position).getName());
+            intent.putExtra("typ", typUlepszenia);
+            context.startActivity(intent);
         });
     }
 

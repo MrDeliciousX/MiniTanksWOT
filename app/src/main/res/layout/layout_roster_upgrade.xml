@@ -13,6 +13,8 @@
         android:layout_marginStart="8dp"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/layoutUpgrade_pkt"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

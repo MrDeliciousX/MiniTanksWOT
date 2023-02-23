@@ -177,19 +177,19 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
         cons.setLayoutManager(consManager);
         eq.setLayoutManager(eqManager);
 
-        crewAdapter = new UpgradesMainAdapter(crewList, TankInRosterSettingsActivity.this);
+        crewAdapter = new UpgradesMainAdapter(crewList, TankInRosterSettingsActivity.this, "zaloga");
         crew.setAdapter(crewAdapter);
 
-        modulesAdapter = new UpgradesMainAdapter(modulesList, TankInRosterSettingsActivity.this);
+        modulesAdapter = new UpgradesMainAdapter(modulesList, TankInRosterSettingsActivity.this, "modul");
         modules.setAdapter(modulesAdapter);
 
-        ammoAdapter = new UpgradesMainAdapter(ammoList, TankInRosterSettingsActivity.this);
+        ammoAdapter = new UpgradesMainAdapter(ammoList, TankInRosterSettingsActivity.this, "ulepszenie/ammo");
         ammo.setAdapter(ammoAdapter);
 
-        consAdapter = new UpgradesMainAdapter(consList, TankInRosterSettingsActivity.this);
+        consAdapter = new UpgradesMainAdapter(consList, TankInRosterSettingsActivity.this, "ulepszenie/mateksp");
         cons.setAdapter(consAdapter);
 
-        eqAdapter = new UpgradesMainAdapter(eqList, TankInRosterSettingsActivity.this);
+        eqAdapter = new UpgradesMainAdapter(eqList, TankInRosterSettingsActivity.this, "ulepszenie/wyposazenie");
         eq.setAdapter(eqAdapter);
     }
 
