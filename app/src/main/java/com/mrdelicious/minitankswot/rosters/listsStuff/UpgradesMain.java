@@ -1,12 +1,17 @@
 package com.mrdelicious.minitankswot.rosters.listsStuff;
 
-public class UpgradesMain {
-    String name, pts;
+import java.util.Comparator;
 
-    public UpgradesMain(String name, String pts) {
+public class UpgradesMain {
+    String name;
+    int pts;
+
+    public UpgradesMain(String name, int pts) {
         this.name = name;
         this.pts = pts;
     }
+
+    public static Comparator<UpgradesMain> UpgradesPtsComparator = Comparator.comparingInt(UpgradesMain::getPts);
 
     @Override
     public String toString() {
@@ -24,11 +29,11 @@ public class UpgradesMain {
         this.name = name;
     }
 
-    public String getPts() {
+    public int getPts() {
         return pts;
     }
 
-    public void setPts(String pts) {
+    public void setPts(int pts) {
         this.pts = pts;
     }
 }
