@@ -32,6 +32,7 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
     int totalPts;
     List<Upgrade> upgrades;
     List<UpgradesMain> crewList, modulesList, ammoList, consList, eqList;
+    String[] zalogaRozbite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +67,23 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
         UpgradesMain modul;
         modulesList = new ArrayList<>();
 
-        modul = new UpgradesMain("Silnik", "");
+        modul = new UpgradesMain("Silnik", 0);
         modulesList.add(modul);
-        modul = new UpgradesMain("Działo", "");
+        modul = new UpgradesMain("Działo", 0);
         modulesList.add(modul);
-        modul = new UpgradesMain("Radio", "");
+        modul = new UpgradesMain("Radio", 0);
         modulesList.add(modul);
-        modul = new UpgradesMain("Zawieszenie", "");
+        modul = new UpgradesMain("Zawieszenie", 0);
         modulesList.add(modul);
         if (!db.tankDao().findByID(tank.tankID).abilities.contains("Haubica")) {
-            modul = new UpgradesMain("Wieża", "");
+            modul = new UpgradesMain("Wieża", 0);
             modulesList.add(modul);
         }
     }
 
     void listaZalogi() {
         String zaloga = db.tankDao().findByID(tank.tankID).crew;
-        String[] zalogaRozbite = zaloga.split("-");
+        zalogaRozbite = zaloga.split("-");
 
         UpgradesMain zalogant;
         crewList = new ArrayList<>();
@@ -107,12 +108,12 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
                     case 'K':
                         helper.append("Kierowca");
                         break;
-                    case 'L':
+                    case 'Ł':
                         helper.append("Ładowniczy");
                         break;
                 }
             }
-            zalogant = new UpgradesMain(helper.toString(), "");
+            zalogant = new UpgradesMain(helper.toString(), 0);
             crewList.add(zalogant);
         }
     }
@@ -121,11 +122,11 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
         UpgradesMain amunicja;
         ammoList = new ArrayList<>();
 
-        amunicja = new UpgradesMain("Slot 1", "");
+        amunicja = new UpgradesMain("Amunicja: slot 1", 0);
         ammoList.add(amunicja);
-        amunicja = new UpgradesMain("Slot 2", "");
+        amunicja = new UpgradesMain("Amunicja: slot 2", 0);
         ammoList.add(amunicja);
-        amunicja = new UpgradesMain("Slot 3", "");
+        amunicja = new UpgradesMain("Amunicja: slot 3", 0);
         ammoList.add(amunicja);
     }
 
@@ -133,11 +134,11 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
         UpgradesMain matEksp;
         consList = new ArrayList<>();
 
-        matEksp = new UpgradesMain("Slot 1", "");
+        matEksp = new UpgradesMain("Mat. Eksploatacyjne: slot 1", 0);
         consList.add(matEksp);
-        matEksp = new UpgradesMain("Slot 2", "");
+        matEksp = new UpgradesMain("Mat. Eksploatacyjne: slot 2", 0);
         consList.add(matEksp);
-        matEksp = new UpgradesMain("Slot 3", "");
+        matEksp = new UpgradesMain("Mat. Eksploatacyjne: slot 3", 0);
         consList.add(matEksp);
     }
 
@@ -145,11 +146,11 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
         UpgradesMain wyposazenie;
         eqList = new ArrayList<>();
 
-        wyposazenie = new UpgradesMain("Slot 1", "");
+        wyposazenie = new UpgradesMain("Wyposażenie: slot 1", 0);
         eqList.add(wyposazenie);
-        wyposazenie = new UpgradesMain("Slot 2", "");
+        wyposazenie = new UpgradesMain("Wyposażenie: slot 2", 0);
         eqList.add(wyposazenie);
-        wyposazenie = new UpgradesMain("Slot 3", "");
+        wyposazenie = new UpgradesMain("Wyposażenie: slot 3", 0);
         eqList.add(wyposazenie);
     }
 
@@ -177,19 +178,44 @@ public class TankInRosterSettingsActivity extends AppCompatActivity {
         cons.setLayoutManager(consManager);
         eq.setLayoutManager(eqManager);
 
-        crewAdapter = new UpgradesMainAdapter(crewList, TankInRosterSettingsActivity.this, "zaloga");
+        crewAdapter = new UpgradesMainAdapter(crewList,
+                TankInRosterSettingsActivity.this,
+                "zaloga",
+                false,
+                rosterID,
+                tankID);
         crew.setAdapter(crewAdapter);
 
-        modulesAdapter = new UpgradesMainAdapter(modulesList, TankInRosterSettingsActivity.this, "modul");
+        modulesAdapter = new UpgradesMainAdapter(modulesList,
+                TankInRosterSettingsActivity.this,
+                "modul",
+                false,
+                rosterID,
+                tankID);
         modules.setAdapter(modulesAdapter);
 
-        ammoAdapter = new UpgradesMainAdapter(ammoList, TankInRosterSettingsActivity.this, "ulepszenie/ammo");
+        ammoAdapter = new UpgradesMainAdapter(ammoList,
+                TankInRosterSettingsActivity.this,
+                "ulepszenie/ammo",
+                false,
+                rosterID,
+                tankID);
         ammo.setAdapter(ammoAdapter);
 
-        consAdapter = new UpgradesMainAdapter(consList, TankInRosterSettingsActivity.this, "ulepszenie/mateksp");
+        consAdapter = new UpgradesMainAdapter(consList,
+                TankInRosterSettingsActivity.this,
+                "ulepszenie/mateksp",
+                false,
+                rosterID,
+                tankID);
         cons.setAdapter(consAdapter);
 
-        eqAdapter = new UpgradesMainAdapter(eqList, TankInRosterSettingsActivity.this, "ulepszenie/wyposazenie");
+        eqAdapter = new UpgradesMainAdapter(eqList,
+                TankInRosterSettingsActivity.this,
+                "ulepszenie/wyposazenie",
+                false,
+                rosterID,
+                tankID);
         eq.setAdapter(eqAdapter);
     }
 

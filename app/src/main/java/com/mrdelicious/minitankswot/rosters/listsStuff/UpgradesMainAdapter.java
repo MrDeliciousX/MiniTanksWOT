@@ -14,6 +14,7 @@ import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.rosters.ChoseUpgradeActivity;
+import com.mrdelicious.minitankswot.rosters.TankInRosterSettingsActivity;
 
 import java.util.List;
 
@@ -22,11 +23,21 @@ public class UpgradesMainAdapter extends RecyclerView.Adapter<UpgradesMainAdapte
     String typUlepszenia;
     EverythingDatabase db;
     Context context;
+    boolean drugiWybor;
+    long rosterId, tankId;
 
-    public UpgradesMainAdapter(List<UpgradesMain> upgradesList, Context context, String typUlepszenia) {
+    public UpgradesMainAdapter(List<UpgradesMain> upgradesList,
+                               Context context,
+                               String typUlepszenia,
+                               boolean drugiWybor,
+                               long rosterId,
+                               long tankId) {
         this.upgradesList = upgradesList;
         this.context = context;
         this.typUlepszenia = typUlepszenia;
+        this.drugiWybor = drugiWybor;
+        this.rosterId = rosterId;
+        this.tankId = tankId;
         db = App.getDB(context);
     }
 
@@ -40,13 +51,24 @@ public class UpgradesMainAdapter extends RecyclerView.Adapter<UpgradesMainAdapte
     @Override
     public void onBindViewHolder(@NonNull UpgradesMainViewHolder holder, int position) {
         holder.name.setText(upgradesList.get(position).getName());
-        holder.pts.setText(upgradesList.get(position).getPts());
-        holder.btn.setOnClickListener(view -> {
-            Intent intent = new Intent(context, ChoseUpgradeActivity.class);
-            intent.putExtra("nazwa", upgradesList.get(position).getName());
-            intent.putExtra("typ", typUlepszenia);
-            context.startActivity(intent);
-        });
+        holder.pts.setText(String.valueOf(upgradesList.get(position).getPts()) + "pkt");
+        if (drugiWybor) {
+            holder.btn.setOnClickListener(view -> {
+                Intent intent = new Intent(context, TankInRosterSettingsActivity.class);
+                intent.putExtra("id", rosterId);
+                intent.putExtra("tankId", tankId);
+                context.startActivity(intent);
+            });
+        } else {
+            holder.btn.setOnClickListener(view -> {
+                Intent intent = new Intent(context, ChoseUpgradeActivity.class);
+                intent.putExtra("nazwa", upgradesList.get(position).getName());
+                intent.putExtra("typ", typUlepszenia);
+                intent.putExtra("id", rosterId);
+                intent.putExtra("tankId", tankId);
+                context.startActivity(intent);
+            });
+        }
     }
 
     @Override
