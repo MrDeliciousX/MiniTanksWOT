@@ -2,6 +2,7 @@ package com.mrdelicious.minitankswot.rosters;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public class RosterSettingsActivity extends AppCompatActivity {
     ToggleButton official;
     int[] nations = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     String aktualnaNazwa;
+    Bundle clicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +36,19 @@ public class RosterSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_roster_settings);
 
         db = App.getDB(this);
-
-        Bundle clicked = getIntent().getExtras();
-        rosterID = clicked.getLong("id");
-        roster = db.rosterDao().findByID(rosterID);
-
-        this.setTitle("Ustawienia plutonu");
         przypisanie();
-        stanUstawien();
 
+        clicked = getIntent().getExtras();
+        if (clicked != null) {
+            rosterID = clicked.getLong("id");
+            roster = db.rosterDao().findByID(rosterID);
+
+            this.setTitle("Ustawienia plutonu");
+        } else {
+            this.setTitle("Nowy pluton");
+            nowaRozpiska();
+        }
+        stanUstawien();
     }
 
     void stanUstawien() {
@@ -115,21 +121,29 @@ public class RosterSettingsActivity extends AppCompatActivity {
         official = findViewById(R.id.rosSet_officialBtn);
     }
 
+    void nowaRozpiska() {
+        Roster newRoster = new Roster();
+        newRoster.name = "Nowy pluton";
+        newRoster.limitPts = 0;
+        newRoster.currentPts = 0;
+        newRoster.tiers = "0000000000";
+        newRoster.official = 0;
+        newRoster.nation = "00000000000";
+        rosterID = db.rosterDao().insertNew(newRoster);
+        roster = db.rosterDao().findByID(rosterID);
+    }
+
     public void saveAndBack(View view) {
         if (!name.getText().toString().equals("")) {
-            if (db.rosterDao().findByName(name.getText().toString()) == null || name.getText().toString().equals(aktualnaNazwa)) {
-                if (!pts.getText().toString().equals("") && Integer.parseInt(pts.getText().toString()) >= 0) {
-                    aktualizacjaWartosci();
-                    Intent intent = new Intent(RosterSettingsActivity.this, RosterMainActivity.class);
-                    intent.putExtra("id", rosterID);
-                    startActivity(intent);
-                } else
-                    Toast.makeText(this, "Błąd limitu punktów", Toast.LENGTH_SHORT).show();
+            if (!pts.getText().toString().equals("") && Integer.parseInt(pts.getText().toString()) >= 0) {
+                aktualizacjaWartosci();
+                Intent intent = new Intent(RosterSettingsActivity.this, RosterMainActivity.class);
+                intent.putExtra("id", rosterID);
+                startActivity(intent);
             } else
-                Toast.makeText(this, "Nazwa już użyta", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Błąd limitu punktów", Toast.LENGTH_SHORT).show();
         } else
             Toast.makeText(this, "Brak nazwy", Toast.LENGTH_SHORT).show();
-
     }
 
     void aktualizacjaWartosci() {
@@ -230,8 +244,14 @@ public class RosterSettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, RosterMainActivity.class);
-        intent.putExtra("id", rosterID);
+        Intent intent;
+        if (clicked == null) {
+            db.rosterDao().delete(roster);
+            intent = new Intent(this, RostersActivity.class);
+        } else {
+            intent = new Intent(this, RosterMainActivity.class);
+            intent.putExtra("id", rosterID);
+        }
         startActivity(intent);
     }
 }

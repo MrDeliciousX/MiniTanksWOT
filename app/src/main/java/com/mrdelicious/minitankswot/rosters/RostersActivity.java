@@ -53,7 +53,7 @@ public class RostersActivity extends AppCompatActivity {
     }
 
     public void createNewRoster(View view) {
-        Intent intent = new Intent(this, CreateRosterFirstStepActivity.class);
+        Intent intent = new Intent(this, RosterSettingsActivity.class);
         startActivity(intent);
     }
 

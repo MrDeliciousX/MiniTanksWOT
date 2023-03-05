@@ -44,14 +44,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".rosters.CreateRosterFirstStepActivity"
-            android:exported="false"
-            android:parentActivityName=".rosters.RostersActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".simulation.SimResultActivity"
             android:exported="false"
             android:parentActivityName=".simulation.SimulationActivity">

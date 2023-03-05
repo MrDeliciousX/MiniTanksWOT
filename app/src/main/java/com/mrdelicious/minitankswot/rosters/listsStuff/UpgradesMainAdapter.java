@@ -51,15 +51,8 @@ public class UpgradesMainAdapter extends RecyclerView.Adapter<UpgradesMainAdapte
     @Override
     public void onBindViewHolder(@NonNull UpgradesMainViewHolder holder, int position) {
         holder.name.setText(upgradesList.get(position).getName());
-        holder.pts.setText(String.valueOf(upgradesList.get(position).getPts()) + "pkt");
-        if (drugiWybor) {
-            holder.btn.setOnClickListener(view -> {
-                Intent intent = new Intent(context, TankInRosterSettingsActivity.class);
-                intent.putExtra("id", rosterId);
-                intent.putExtra("tankId", tankId);
-                context.startActivity(intent);
-            });
-        } else {
+        holder.pts.setText(upgradesList.get(position).getPts() + "pkt");
+        if (!drugiWybor) {
             holder.btn.setOnClickListener(view -> {
                 Intent intent = new Intent(context, ChoseUpgradeActivity.class);
                 intent.putExtra("nazwa", upgradesList.get(position).getName());
