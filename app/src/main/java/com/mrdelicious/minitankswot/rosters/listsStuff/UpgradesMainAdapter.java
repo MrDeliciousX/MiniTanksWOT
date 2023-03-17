@@ -14,7 +14,6 @@ import com.mrdelicious.minitankswot.App;
 import com.mrdelicious.minitankswot.EverythingDatabase;
 import com.mrdelicious.minitankswot.R;
 import com.mrdelicious.minitankswot.rosters.ChoseUpgradeActivity;
-import com.mrdelicious.minitankswot.rosters.TankInRosterSettingsActivity;
 
 import java.util.List;
 
